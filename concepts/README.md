@@ -70,6 +70,10 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 | [`fundamentals/props-basics`](fundamentals/props-basics)                         | fundamentals | ✅ scaffolded |
 | [`fundamentals/rendering-lists-and-keys`](fundamentals/rendering-lists-and-keys) | fundamentals | ✅ scaffolded |
 | [`fundamentals/conditional-rendering`](fundamentals/conditional-rendering)       | fundamentals | ✅ scaffolded |
+| [`state-management/lifting-state-up`](state-management/lifting-state-up)         | state-management | ✅ scaffolded |
+| [`state-management/context-basics`](state-management/context-basics)             | state-management | ✅ scaffolded |
+| [`state-management/use-reducer-basics`](state-management/use-reducer-basics)     | state-management | ✅ scaffolded |
+| [`state-management/external-store-sync`](state-management/external-store-sync) | state-management | ✅ scaffolded |
 
 _Add a row here as you add each new concept package._
 

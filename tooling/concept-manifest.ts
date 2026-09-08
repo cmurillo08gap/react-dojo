@@ -114,4 +114,32 @@ export const CONCEPTS: ConceptManifestEntry[] = [
     packageName: "concept-custom-hooks-basics",
     port: 5316,
   },
+  {
+    category: "state-management",
+    slug: "lifting-state-up",
+    title: "Lifting state up",
+    packageName: "concept-lifting-state-up",
+    port: 5321,
+  },
+  {
+    category: "state-management",
+    slug: "context-basics",
+    title: "Context basics",
+    packageName: "concept-context-basics",
+    port: 5322,
+  },
+  {
+    category: "state-management",
+    slug: "use-reducer-basics",
+    title: "useReducer basics",
+    packageName: "concept-use-reducer-basics",
+    port: 5323,
+  },
+  {
+    category: "state-management",
+    slug: "external-store-sync",
+    title: "External store sync",
+    packageName: "concept-external-store-sync",
+    port: 5324,
+  },
 ];

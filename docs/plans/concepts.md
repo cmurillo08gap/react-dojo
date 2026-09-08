@@ -51,7 +51,7 @@ Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
 | --------------------- | :---: | :-----------------: | ------------------- |
 | `fundamentals`        |   4   |          0          | ✅ complete for now |
 | `hooks`               |   6   |          0          | ✅ complete for now |
-| `state-management`    |   0   |          4          | 📋 scoped           |
+| `state-management`    |   4   |          0          | ✅ complete for now |
 | `forms-and-actions`   |   0   |          5          | 📋 scoped           |
 | `concurrent-features` |   0   |          4          | 📋 scoped           |
 | `performance`         |   0   |          4          | 📋 scoped           |
@@ -95,10 +95,10 @@ Covers: Context, `useReducer`, lifting state up, external stores.
 
 | Package               | Status | Core idea / contrast                                                                                                                                                                                                                                |
 | --------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `lifting-state-up`    | 📋     | Two sibling components each holding their own local copy of the same logical state (they drift out of sync) vs. lifting it to their common parent and passing it down.                                                                              |
-| `context-basics`      | 📋     | Prop drilling a value through several layers of components that don't use it, vs. `createContext`/`useContext`. Include the "every consumer re-renders" pitfall when the context value is a fresh object literal each render, vs. a memoized value. |
-| `use-reducer-basics`  | 📋     | A component with several related `useState` calls that can be updated inconsistently (invalid combinations) vs. one `useReducer` with a defined action set that keeps transitions valid.                                                            |
-| `external-store-sync` | 📋     | Reading a value from a store that lives outside React (e.g. `window` size, or a tiny custom event-emitter store) via ad hoc `useState` + manual subscription (risk of tearing/missed updates) vs. `useSyncExternalStore`.                           |
+| `lifting-state-up`    | ✅     | Two sibling components each holding their own local copy of the same logical state (they drift out of sync) vs. lifting it to their common parent and passing it down.                                                                              |
+| `context-basics`      | ✅     | Prop drilling a value through several layers of components that don't use it, vs. `createContext`/`useContext`. Include the "every consumer re-renders" pitfall when the context value is a fresh object literal each render, vs. a memoized value. |
+| `use-reducer-basics`  | ✅     | A component with several related `useState` calls that can be updated inconsistently (invalid combinations) vs. one `useReducer` with a defined action set that keeps transitions valid.                                                            |
+| `external-store-sync` | ✅     | Reading a value from a store that lives outside React (e.g. `window` size, or a tiny custom event-emitter store) via ad hoc `useState` + manual subscription (risk of tearing/missed updates) vs. `useSyncExternalStore`.                           |
 
 ## `forms-and-actions`
 
@@ -190,8 +190,8 @@ this isn't arbitrary, but it's not a hard constraint either:
 
 1. ~~`fundamentals`~~ ✅ done
 2. ~~`hooks`~~ ✅ done
-3. `state-management` — up next; leans on `use-state-basics`/`use-effect-basics`
-4. `forms-and-actions`
+3. ~~`state-management`~~ ✅ done
+4. `forms-and-actions` — up next; leans on `state-management`
 5. `concurrent-features`
 6. `performance` (pairs well with `hooks/use-memo-basics` +
    `hooks/use-callback-basics` — consider interleaving)
@@ -201,6 +201,44 @@ this isn't arbitrary, but it's not a hard constraint either:
 9. `architecture` — resolve the open questions above first
 
 ## Session log
+
+### 2026-09-08 (state-management category completed)
+
+- Built all 4 `state-management` packages in parallel via 4 subagents, each
+  scoped to its own package directory (`lifting-state-up` port 5321,
+  `context-basics` 5322, `use-reducer-basics` 5323, `external-store-sync`
+  5324) — `state-management` is now ✅ complete. Each subagent verified its
+  theory content against context7 (`/reactjs/react.dev`) before writing:
+  `lifting-state-up` against "Sharing State Between Components"/"Managing
+  State"; `context-basics` against `createContext`/`useContext`/`memo`
+  (including the React 19 `<Context value={...}>` provider syntax) and the
+  re-render/memoization semantics specifically; `use-reducer-basics`
+  against the `useReducer` reference and "Extracting State Logic into a
+  Reducer"; `external-store-sync` against `useSyncExternalStore` and "You
+  Might Not Need an Effect"'s external-store section.
+- Each package follows the established contrast pattern: `lifting-state-up`
+  (two sibling temperature editors with independent `useState`s drifting
+  out of sync vs. state lifted to their common parent), `context-basics`
+  (three tabbed sub-demos — prop drilling vs. context, plus a dedicated
+  memoization-pitfall demo with live render-count badges on
+  `React.memo`-wrapped consumers), `use-reducer-basics` (a fetch-status
+  `status`/`data`/`error` trio that reaches an invalid combination with
+  loose `useState` calls vs. a discriminated-union reducer that makes it
+  structurally unreachable, including a `never` exhaustiveness check),
+  `external-store-sync` (a module-level store with an ad hoc
+  `useState`+`useEffect` subscriber pair that can visibly tear under an
+  artificial subscribe delay vs. a `useSyncExternalStore` pair that never
+  does).
+- Orchestrating session then ran `pnpm install` once, followed by
+  `typecheck` and a production `build` per new package (all 4 clean), then
+  the full-repo `pnpm lint` (clean — the one warning it surfaced is a
+  pre-existing issue in `challenges/easy/flatten-array`, unrelated to this
+  work). Reviewed all 4 `App.tsx`/`README.md` pairs by hand; no
+  correctness issues found. Updated `tooling/concept-manifest.ts`,
+  `concepts/README.md`'s status table, and this doc's status-at-a-glance/
+  state-management tables/Next-up section once, serially, from the
+  orchestrating session (not per-subagent), per `concepts/CLAUDE.md`'s
+  parallelization guidance.
 
 ### 2026-09-08 (hooks category completed)
 
