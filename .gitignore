@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+dist-ssr/
+build/
+
+# testing
+coverage/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# editors / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# generated mock-interview transcripts (keep the folder, ignore the runs)
+interviews/sessions/*
+!interviews/sessions/README.md
+!interviews/sessions/.gitkeep
