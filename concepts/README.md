@@ -24,6 +24,24 @@ Run any concept from the repo root:
 pnpm --filter concept-<slug> dev
 ```
 
+## In-app layout
+
+Every concept's `App.tsx` renders three things together on one page — a
+learner shouldn't have to alt-tab to the README mid-demo:
+
+1. **Theory panel** — condensed explanation, always visible (the short
+   version of the README's "What this demonstrates"/"Key takeaways").
+2. **Interactive demo** — the actual behavior to click through.
+3. **"What just happened" panel** — reacts to whichever control was last
+   used, showing the exact code that ran plus a sentence on why it behaved
+   that way. Keep the displayed code snippet as a plain string constant
+   next to the real handler (not derived via `.toString()` — that breaks
+   under minification) and a comment reminding you to keep them in sync.
+
+[`hooks/use-state-basics`](hooks/use-state-basics) is the reference
+implementation of this layout (see its `src/App.tsx` and `src/index.css`)
+— copy its shape for new concepts, the same way you copy its README shape.
+
 ## Categories
 
 | Category               | Covers                                                                 |
@@ -40,9 +58,13 @@ pnpm --filter concept-<slug> dev
 
 ## Status
 
-| Concept                                            | Category | Status      |
-| --------------------------------------------------- | -------- | ----------- |
-| [`hooks/use-state-basics`](hooks/use-state-basics) | hooks    | ✅ scaffolded |
+| Concept                                                                      | Category     | Status      |
+| ------------------------------------------------------------------------------ | ------------ | ----------- |
+| [`hooks/use-state-basics`](hooks/use-state-basics)                           | hooks        | ✅ scaffolded |
+| [`fundamentals/jsx-and-components`](fundamentals/jsx-and-components)         | fundamentals | ✅ scaffolded |
+| [`fundamentals/props-basics`](fundamentals/props-basics)                     | fundamentals | ✅ scaffolded |
+| [`fundamentals/rendering-lists-and-keys`](fundamentals/rendering-lists-and-keys) | fundamentals | ✅ scaffolded |
+| [`fundamentals/conditional-rendering`](fundamentals/conditional-rendering)   | fundamentals | ✅ scaffolded |
 
 _Add a row here as you add each new concept package._
 

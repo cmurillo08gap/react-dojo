@@ -21,9 +21,10 @@ Run it:
 pnpm --filter concept-use-state-basics dev
 ```
 
-Open the printed local URL and click the buttons in `src/App.tsx` — in
-particular, compare `+2 (stale closure bug)` against `+2 (updater fn,
-correct)`.
+Open the printed local URL. The page shows a theory panel, the interactive
+demo, and a "What just happened" panel that updates with the exact code
+that ran and why — click through all four buttons, in particular comparing
+`+2 (stale closure bug)` against `+2 (updater fn, correct)`.
 
 ## Key takeaways
 

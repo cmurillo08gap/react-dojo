@@ -15,8 +15,10 @@ react-dojo/
 ├── interviews/         # question bank + generated mock-interview transcripts
 │   ├── question-bank/
 │   └── sessions/
-├── resources/          # curated external links, cheat sheets
-├── tooling/             # shared Vite config factory used by concept packages
+├── gallery/              # landing page linking to every concept's dev server
+├── resources/             # curated external links, cheat sheets
+├── tooling/                # shared Vite config factory + the concept port manifest
+├── docs/plans/               # cross-session tracking: what's built, backlog, session log
 └── .claude/skills/mock-interview/  # the /mock-interview skill
 ```
 
@@ -41,6 +43,14 @@ Run a specific concept or challenge (package names are `concept-<slug>` /
 pnpm --filter concept-use-state-basics dev
 pnpm --filter challenge-flatten-array test:watch
 ```
+
+Or run **everything at once** and browse from one page: `pnpm dev` starts
+every concept's dev server plus the [`gallery/`](gallery) — a plain
+landing page listing every concept by category. Open
+[`http://localhost:5300`](http://localhost:5300) and click through instead
+of running `pnpm --filter` per concept. Each concept has a fixed dev port
+(see [`tooling/concept-manifest.ts`](tooling/concept-manifest.ts)) so the
+gallery's links stay stable across runs.
 
 Repo-wide commands (run across every workspace package):
 
@@ -81,7 +91,9 @@ follows when working in this repo.
 
 ## Status
 
-Early scaffold — one example concept
-([`hooks/use-state-basics`](concepts/hooks/use-state-basics)) and one
-example challenge ([`easy/flatten-array`](challenges/easy/flatten-array))
-are in place to establish the pattern. Everything else grows from here.
+Early scaffold. `fundamentals` is fully built out (4 concepts) plus one
+`hooks` concept ([`hooks/use-state-basics`](concepts/hooks/use-state-basics))
+and one example challenge
+([`easy/flatten-array`](challenges/easy/flatten-array)) establish the
+pattern for the rest. See [`docs/plans/concepts.md`](docs/plans/concepts.md)
+for the full build status and scoped backlog.

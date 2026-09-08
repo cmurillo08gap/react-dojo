@@ -10,10 +10,10 @@
     "pnpm": ">=9"
   },
   "scripts": {
-    "dev": "pnpm -r --if-present run dev",
+    "dev": "pnpm -r --if-present --parallel run dev",
     "build": "pnpm -r --if-present run build",
     "test": "pnpm -r --if-present run test",
-    "test:watch": "pnpm -r --if-present run test:watch",
+    "test:watch": "pnpm -r --if-present --parallel run test:watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

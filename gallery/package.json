@@ -1,0 +1,16 @@
+{
+  "name": "gallery",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Landing page listing every runnable concept, linking to its dev server.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
