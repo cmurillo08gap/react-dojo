@@ -52,7 +52,7 @@ Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
 | `fundamentals`        |   4   |          0          | ✅ complete for now |
 | `hooks`               |   6   |          0          | ✅ complete for now |
 | `state-management`    |   4   |          0          | ✅ complete for now |
-| `forms-and-actions`   |   0   |          5          | 📋 scoped           |
+| `forms-and-actions`   |   5   |          0          | ✅ complete for now |
 | `concurrent-features` |   0   |          4          | 📋 scoped           |
 | `performance`         |   0   |          4          | 📋 scoped           |
 | `patterns`            |   0   |          4          | 📋 scoped           |
@@ -103,15 +103,16 @@ Covers: Context, `useReducer`, lifting state up, external stores.
 ## `forms-and-actions`
 
 Covers: controlled inputs, React 19 Actions, `useActionState`,
-`useFormStatus`, `useOptimistic`.
+`useFormStatus`, `useOptimistic`. **Fully built** — no open backlog unless
+a gap surfaces later.
 
 | Package                             | Status | Core idea / contrast                                                                                                                                                                                                                                                                                                                                    |
 | ----------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `controlled-vs-uncontrolled-inputs` | 📋     | `value` + `onChange` (React owns the input's value) vs. `defaultValue` + a ref (the DOM owns it). When each is the right call, and the "switching between controlled/undefined value" console warning. Scoped to form inputs specifically — see `patterns/controlled-vs-uncontrolled-components` for the general component-design version of this idea. |
-| `form-actions-basics`               | 📋     | A traditional `onSubmit` handler with manual `preventDefault`, manual pending-state `useState`, and manual error handling vs. a React 19 `<form action={fn}>` Action.                                                                                                                                                                                   |
-| `use-action-state-basics`           | 📋     | `useActionState` for form state + validation error display across submissions, including the pending flag it returns.                                                                                                                                                                                                                                   |
-| `use-form-status-basics`            | 📋     | A submit button nested a few levels inside a `<form>` that needs to know "is this form submitting" without prop-drilling a flag down vs. `useFormStatus` read directly in the nested component.                                                                                                                                                         |
-| `use-optimistic-basics`             | 📋     | UI that waits for a round trip before showing a new item (e.g. a comment/like) vs. `useOptimistic` showing it immediately and reconciling (or rolling back) when the real response lands.                                                                                                                                                               |
+| `controlled-vs-uncontrolled-inputs` | ✅     | `value` + `onChange` (React owns the input's value) vs. `defaultValue` + a ref (the DOM owns it), plus a live "switching trap" input that flips between the two and captures React's real console warning inline.                                                                                                                                     |
+| `form-actions-basics`               | ✅     | A traditional `onSubmit` handler with manual `preventDefault`, manual pending-state `useState`, and manual error handling vs. a React 19 `<form action={fn}>` Action — including the automatic reset of uncontrolled fields on success.                                                                                                                |
+| `use-action-state-basics`           | ✅     | `useActionState` for form state + validation error display across submissions, including the pending flag it returns, vs. the pre-19 manual `useState` equivalent (with an out-of-order-response race guard the hook makes unnecessary).                                                                                                              |
+| `use-form-status-basics`            | ✅     | A submit button nested three components deep inside a `<form>` that needs to know "is this form submitting" without prop-drilling a flag down vs. `useFormStatus` read directly in the nested component — plus a live "gotcha" demo of calling the hook in the form-rendering component itself (always reports non-pending).                          |
+| `use-optimistic-basics`             | ✅     | UI that waits for a round trip before showing a new comment vs. `useOptimistic` showing it immediately and reconciling (or rolling back) when the real response lands — a "simulate failure" toggle makes the rollback something you watch happen, not just read about.                                                                              |
 
 ## `concurrent-features`
 
@@ -191,8 +192,8 @@ this isn't arbitrary, but it's not a hard constraint either:
 1. ~~`fundamentals`~~ ✅ done
 2. ~~`hooks`~~ ✅ done
 3. ~~`state-management`~~ ✅ done
-4. `forms-and-actions` — up next; leans on `state-management`
-5. `concurrent-features`
+4. ~~`forms-and-actions`~~ ✅ done
+5. `concurrent-features` — up next; leans on `state-management`
 6. `performance` (pairs well with `hooks/use-memo-basics` +
    `hooks/use-callback-basics` — consider interleaving)
 7. `patterns`
@@ -201,6 +202,77 @@ this isn't arbitrary, but it's not a hard constraint either:
 9. `architecture` — resolve the open questions above first
 
 ## Session log
+
+### 2026-09-08 (forms-and-actions category completed)
+
+- Built all 5 `forms-and-actions` packages in parallel via 5 subagents,
+  each scoped to its own package directory
+  (`controlled-vs-uncontrolled-inputs` port 5331, `form-actions-basics`
+  5332, `use-action-state-basics` 5333, `use-form-status-basics` 5334,
+  `use-optimistic-basics` 5335) — `forms-and-actions` is now ✅ complete.
+  Each subagent verified its theory content against context7
+  (`/reactjs/react.dev`) before writing: `controlled-vs-uncontrolled-inputs`
+  against the `<input>` reference's controlled/uncontrolled caveats and the
+  exact "changing an uncontrolled input to be controlled" warning wording;
+  `form-actions-basics` against the `<form>` reference's `action` prop
+  (Transition semantics, no `preventDefault`, POST-only, automatic reset of
+  uncontrolled fields on success); `use-action-state-basics` against the
+  exact `useActionState(fn, initialState, permalink?)` signature and
+  argument order; `use-form-status-basics` against `useFormStatus`'s
+  `react-dom` import path, its `{ pending, data, method, action }` return
+  shape, and the "must be called from a component nested inside the form"
+  caveat; `use-optimistic-basics` against `useOptimistic`'s signature and
+  react.dev's "no extra render to clear the optimistic state" reconciliation
+  wording.
+- Mid-run coordination hiccup, recorded so a future session recognizes the
+  pattern: 3 of the first 5 subagents hit the account's session rate limit
+  and were reported "failed" by the harness before finishing. Two of those
+  three (`controlled-vs-uncontrolled-inputs`, `use-action-state-basics`,
+  `use-optimistic-basics` — actually all three) had, on inspection, mostly
+  or fully written their files before the failure; 2 packages
+  (`form-actions-basics`, `use-form-status-basics`) had only scaffolding.
+  Relaunched 2 fresh subagents for just the missing `App.tsx`/`index.css`/
+  `README.md` trio once the rate limit reset. Those two subagents then
+  appeared to stall (no visible progress across several `ListAgents`
+  checks) — the orchestrating session started writing the same two
+  packages by hand as a fallback, which raced with the subagents (they
+  were in fact still alive, just slow) and caused real file-write
+  collisions on both packages. Recovery: sent both subagents a heads-up
+  message describing the collision and asking them to re-read and
+  reconcile their own final `App.tsx`/`index.css`/`README.md` trio for
+  internal consistency before reporting done, rather than reverting either
+  side's edits. Both did — `use-form-status-basics`'s subagent explicitly
+  found and fixed a real bug introduced by the interleaving (a
+  `htmlFor`/`id` mismatch that broke the label/input association) and
+  rewrote its README from scratch to match the component names actually
+  on disk. **Lesson for next time:** don't start manually editing a
+  subagent's files based on `ListAgents`' "started Xm ago" reading not
+  advancing between checks — it was not a reliable stall signal here;
+  checking file mtimes on disk (or just waiting for the actual completion
+  notification) would have shown both were still progressing.
+- Orchestrating session then ran `pnpm install` once, followed by
+  `typecheck` and a production `build` per new package (all 5 clean once
+  fixed — see below), then the full-repo `pnpm lint`, which caught one
+  real bug: `controlled-vs-uncontrolled-inputs`'s render counter mutated a
+  ref during render (`renderCountRef.current += 1`), tripping
+  `react-hooks/refs`. Fixed by replacing the generic "count every render"
+  ref with a `useState` counter incremented directly inside the controlled
+  input's own `onChange` handler — a plain event-handler `setState` call,
+  which is both lint-clean and a more precise demonstration (it now reads
+  "controlled input re-renders" and ticks up exactly once per keystroke,
+  rather than an unconditional per-render count that would also move on
+  unrelated interactions like the other two demo inputs' buttons); updated
+  the README's two references to match. Re-ran lint/typecheck/build clean
+  after the fix. Reviewed all 5 `App.tsx`/`README.md` pairs by hand; no
+  further correctness issues found. Also normalized two READMEs
+  (`controlled-vs-uncontrolled-inputs`, `use-optimistic-basics`) that were
+  missing the "fixed at `http://localhost:53xx`" callout the other three
+  packages' "Run it" sections have. `pnpm format:check`'s pre-existing
+  repo-wide drift (see hooks category note below) remains out of scope.
+  Updated `tooling/concept-manifest.ts`, `concepts/README.md`'s status
+  table, and this doc's status-at-a-glance/forms-and-actions
+  tables/Next-up section once, serially, from the orchestrating session
+  (not per-subagent), per `concepts/CLAUDE.md`'s parallelization guidance.
 
 ### 2026-09-08 (state-management category completed)
 

@@ -74,6 +74,11 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 | [`state-management/context-basics`](state-management/context-basics)             | state-management | ✅ scaffolded |
 | [`state-management/use-reducer-basics`](state-management/use-reducer-basics)     | state-management | ✅ scaffolded |
 | [`state-management/external-store-sync`](state-management/external-store-sync) | state-management | ✅ scaffolded |
+| [`forms-and-actions/controlled-vs-uncontrolled-inputs`](forms-and-actions/controlled-vs-uncontrolled-inputs) | forms-and-actions | ✅ scaffolded |
+| [`forms-and-actions/form-actions-basics`](forms-and-actions/form-actions-basics) | forms-and-actions | ✅ scaffolded |
+| [`forms-and-actions/use-action-state-basics`](forms-and-actions/use-action-state-basics) | forms-and-actions | ✅ scaffolded |
+| [`forms-and-actions/use-form-status-basics`](forms-and-actions/use-form-status-basics) | forms-and-actions | ✅ scaffolded |
+| [`forms-and-actions/use-optimistic-basics`](forms-and-actions/use-optimistic-basics) | forms-and-actions | ✅ scaffolded |
 
 _Add a row here as you add each new concept package._
 
