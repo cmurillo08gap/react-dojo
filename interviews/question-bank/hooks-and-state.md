@@ -12,8 +12,8 @@ Tags: `hooks` `useEffect` `custom-hooks` `closures`
   conditional hook shifts every subsequent hook's slot and corrupts state.
 - **Follow-ups:**
   - How does `eslint-plugin-react-hooks` catch this statically?
-  - How do you conditionally *use* a hook's behavior without conditionally
-    *calling* it? (move the condition inside the hook / render two branches
+  - How do you conditionally _use_ a hook's behavior without conditionally
+    _calling_ it? (move the condition inside the hook / render two branches
     that each call it unconditionally)
 
 ---
@@ -27,7 +27,7 @@ Tags: `hooks` `useEffect` `custom-hooks` `closures`
   `useRef` for a value that shouldn't trigger the effect, or moving logic
   into an event handler instead of an effect).
 - **Follow-ups:**
-  - When is it *correct* to intentionally omit a dependency, and how do you
+  - When is it _correct_ to intentionally omit a dependency, and how do you
     document that decision?
 
 ---
@@ -49,8 +49,8 @@ Tags: `hooks` `useEffect` `custom-hooks` `closures`
 
 - **Difficulty:** medium
 - **Discussion points:** timer cleanup on unmount/re-call; leading vs.
-  trailing edge; returning the debounced *value* vs. a debounced
-  *callback*; what happens if the input changes faster than the delay.
+  trailing edge; returning the debounced _value_ vs. a debounced
+  _callback_; what happens if the input changes faster than the delay.
 - **Follow-ups:**
   - How would you test it without real timers (`vi.useFakeTimers`)?
 
@@ -66,7 +66,7 @@ Tags: `hooks` `useEffect` `custom-hooks` `closures`
 
 ---
 
-### `useRef` vs. `useState` — when does mutating a ref *not* trigger the behavior you expect?
+### `useRef` vs. `useState` — when does mutating a ref _not_ trigger the behavior you expect?
 
 - **Difficulty:** easy/medium
 - **Discussion points:** refs don't trigger re-renders and don't

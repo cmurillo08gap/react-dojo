@@ -44,27 +44,32 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 
 ## Categories
 
-| Category               | Covers                                                                 |
-| ----------------------- | ----------------------------------------------------------------------- |
-| `fundamentals`          | JSX, components, props, rendering, keys, lists, conditional rendering |
-| `hooks`                 | `useState`, `useEffect`, `useRef`, `useMemo`, `useCallback`, custom hooks |
-| `state-management`      | Context, `useReducer`, lifting state, external stores                 |
-| `forms-and-actions`     | Controlled inputs, React 19 Actions, `useActionState`, `useFormStatus`, `useOptimistic` |
-| `concurrent-features`   | Suspense, transitions (`useTransition`, `useDeferredValue`), the `use()` API |
-| `performance`           | Memoization, code-splitting, virtualization, profiling                |
-| `patterns`              | Compound components, render props, controlled/uncontrolled, HOCs      |
-| `testing`               | React Testing Library, Vitest, mocking, accessibility queries         |
-| `architecture`          | Project structure, data-fetching patterns, Server Components (conceptually) |
+| Category              | Covers                                                                                  |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| `fundamentals`        | JSX, components, props, rendering, keys, lists, conditional rendering                   |
+| `hooks`               | `useState`, `useEffect`, `useRef`, `useMemo`, `useCallback`, custom hooks               |
+| `state-management`    | Context, `useReducer`, lifting state, external stores                                   |
+| `forms-and-actions`   | Controlled inputs, React 19 Actions, `useActionState`, `useFormStatus`, `useOptimistic` |
+| `concurrent-features` | Suspense, transitions (`useTransition`, `useDeferredValue`), the `use()` API            |
+| `performance`         | Memoization, code-splitting, virtualization, profiling                                  |
+| `patterns`            | Compound components, render props, controlled/uncontrolled, HOCs                        |
+| `testing`             | React Testing Library, Vitest, mocking, accessibility queries                           |
+| `architecture`        | Project structure, data-fetching patterns, Server Components (conceptually)             |
 
 ## Status
 
-| Concept                                                                      | Category     | Status      |
-| ------------------------------------------------------------------------------ | ------------ | ----------- |
-| [`hooks/use-state-basics`](hooks/use-state-basics)                           | hooks        | ✅ scaffolded |
-| [`fundamentals/jsx-and-components`](fundamentals/jsx-and-components)         | fundamentals | ✅ scaffolded |
-| [`fundamentals/props-basics`](fundamentals/props-basics)                     | fundamentals | ✅ scaffolded |
+| Concept                                                                          | Category     | Status        |
+| -------------------------------------------------------------------------------- | ------------ | ------------- |
+| [`hooks/use-state-basics`](hooks/use-state-basics)                               | hooks        | ✅ scaffolded |
+| [`hooks/use-effect-basics`](hooks/use-effect-basics)                             | hooks        | ✅ scaffolded |
+| [`hooks/use-ref-basics`](hooks/use-ref-basics)                                   | hooks        | ✅ scaffolded |
+| [`hooks/use-memo-basics`](hooks/use-memo-basics)                                 | hooks        | ✅ scaffolded |
+| [`hooks/use-callback-basics`](hooks/use-callback-basics)                         | hooks        | ✅ scaffolded |
+| [`hooks/custom-hooks-basics`](hooks/custom-hooks-basics)                         | hooks        | ✅ scaffolded |
+| [`fundamentals/jsx-and-components`](fundamentals/jsx-and-components)             | fundamentals | ✅ scaffolded |
+| [`fundamentals/props-basics`](fundamentals/props-basics)                         | fundamentals | ✅ scaffolded |
 | [`fundamentals/rendering-lists-and-keys`](fundamentals/rendering-lists-and-keys) | fundamentals | ✅ scaffolded |
-| [`fundamentals/conditional-rendering`](fundamentals/conditional-rendering)   | fundamentals | ✅ scaffolded |
+| [`fundamentals/conditional-rendering`](fundamentals/conditional-rendering)       | fundamentals | ✅ scaffolded |
 
 _Add a row here as you add each new concept package._
 

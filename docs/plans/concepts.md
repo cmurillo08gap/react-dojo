@@ -50,7 +50,7 @@ Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
 | Category              | Built |  Scoped (planned)   | Status              |
 | --------------------- | :---: | :-----------------: | ------------------- |
 | `fundamentals`        |   4   |          0          | ✅ complete for now |
-| `hooks`               |   1   |          5          | 🚧 partial          |
+| `hooks`               |   6   |          0          | ✅ complete for now |
 | `state-management`    |   0   |          4          | 📋 scoped           |
 | `forms-and-actions`   |   0   |          5          | 📋 scoped           |
 | `concurrent-features` |   0   |          4          | 📋 scoped           |
@@ -83,11 +83,11 @@ hooks.
 | Package               | Status | Core idea / contrast                                                                                                                                                                                                                                                     |
 | --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `use-state-basics`    | ✅     | Updater-fn vs. value form of `setCount`; stale-closure bug from calling the setter twice with the captured value.                                                                                                                                                        |
-| `use-effect-basics`   | 📋     | Effects sync a component with an external system. Contrast: an effect that subscribes without a cleanup function (duplicate subscriptions pile up across re-renders/remounts, very visible under `<StrictMode>`'s double-invoke) vs. one that returns a cleanup.         |
-| `use-ref-basics`      | 📋     | Refs hold a mutable value that survives re-renders _without_ triggering one. Contrast: storing a value that should drive the UI in a ref (UI silently doesn't update) vs. the same value in `useState`; plus a DOM ref for imperative focus/scroll.                      |
-| `use-memo-basics`     | 📋     | Contrast: an expensive computation re-run on every render (even for unrelated state changes) vs. wrapped in `useMemo` with the right dependency array. Pairs naturally with `react-memo-basics` in `performance`.                                                        |
-| `use-callback-basics` | 📋     | Contrast: a new function identity every render breaking a memoized child's `React.memo` bail-out vs. `useCallback` stabilizing it. Needs `react-memo-basics`-style child to make the effect visible — consider building after/alongside `performance/react-memo-basics`. |
-| `custom-hooks-basics` | 📋     | Extracting shared stateful logic into a hook (e.g. `useToggle` or `useLocalStorageState`); rules of hooks (top-level only, hooks/components only) and why a hook is "just a function that calls other hooks."                                                            |
+| `use-effect-basics`   | ✅     | Effects sync a component with an external system. Contrast: an effect that subscribes without a cleanup function (duplicate subscriptions pile up across re-renders/remounts, very visible under `<StrictMode>`'s double-invoke) vs. one that returns a cleanup.         |
+| `use-ref-basics`      | ✅     | Refs hold a mutable value that survives re-renders _without_ triggering one. Contrast: storing a value that should drive the UI in a ref (UI silently doesn't update) vs. the same value in `useState`; plus a DOM ref for imperative focus/scroll.                      |
+| `use-memo-basics`     | ✅     | Contrast: an expensive computation re-run on every render (even for unrelated state changes) vs. wrapped in `useMemo` with the right dependency array. Pairs naturally with `react-memo-basics` in `performance`.                                                        |
+| `use-callback-basics` | ✅     | Contrast: a new function identity every render breaking a memoized child's `React.memo` bail-out vs. `useCallback` stabilizing it. Needs `react-memo-basics`-style child to make the effect visible — consider building after/alongside `performance/react-memo-basics`. |
+| `custom-hooks-basics` | ✅     | Extracting shared stateful logic into a hook (e.g. `useToggle` or `useLocalStorageState`); rules of hooks (top-level only, hooks/components only) and why a hook is "just a function that calls other hooks."                                                            |
 
 ## `state-management`
 
@@ -189,9 +189,8 @@ Suggested default order — each category leans on the ones before it, so
 this isn't arbitrary, but it's not a hard constraint either:
 
 1. ~~`fundamentals`~~ ✅ done
-2. `hooks` — finish out the remaining 5 (state-management and everything
-   after leans on `useEffect`/`useRef`/`useMemo`/`useCallback`)
-3. `state-management`
+2. ~~`hooks`~~ ✅ done
+3. `state-management` — up next; leans on `use-state-basics`/`use-effect-basics`
 4. `forms-and-actions`
 5. `concurrent-features`
 6. `performance` (pairs well with `hooks/use-memo-basics` +
@@ -202,6 +201,46 @@ this isn't arbitrary, but it's not a hard constraint either:
 9. `architecture` — resolve the open questions above first
 
 ## Session log
+
+### 2026-09-08 (hooks category completed)
+
+- Built the remaining 5 `hooks` packages in parallel via 5 subagents, each
+  scoped to its own package directory (`use-effect-basics` port 5312,
+  `use-ref-basics` 5313, `use-memo-basics` 5314, `use-callback-basics`
+  5315, `custom-hooks-basics` 5316) — `hooks` is now ✅ complete. Each
+  subagent verified its theory content against context7
+  (`/react/react`/`react.dev` docs) before writing, rather than relying on
+  training data.
+- Orchestrating session then ran `pnpm install` once, and `typecheck` +
+  `build` per new package, then the full-repo `pnpm lint` — which caught 4
+  real correctness issues the subagents' generated demo code had (not
+  their pedagogical anti-patterns, which are intentional): reading/writing
+  `ref.current` during render (`use-ref-basics`'s "reveal" display,
+  `use-callback-basics`'s ref-based render counter) and calling the impure
+  `performance.now()` during render/inside a `useMemo` factory
+  (`use-memo-basics`'s timing readout), plus a synchronous `setState` as
+  the first line of an effect body (`use-effect-basics`'s initial
+  active-listener-count sync). All four are exactly the kind of "don't do
+  this in render" rules these concepts themselves teach, caught by
+  `eslint-plugin-react-hooks`'s newer purity/refs/set-state-in-effect
+  rules — fixed by: a lazy `useState` initializer instead of an effect-body
+  `setState` (`use-effect-basics`); redesigning the "reveal" interaction in
+  `use-ref-basics` so the ref's value is only ever read inside an event
+  handler and copied into state, never read during render; swapping the
+  `performance.now()` timing metric in `use-memo-basics` for a pure,
+  deterministic "division checks performed" count; and rewriting
+  `use-callback-basics`'s render counter using React's own sanctioned
+  "adjust state while rendering" idiom (a guarded state comparison) instead
+  of a mutated ref — which turned out to also fix a pre-existing StrictMode
+  double-invoke count-doubling glitch. Re-ran lint/typecheck/build clean
+  after fixes; updated the affected READMEs to match. `pnpm format:check`
+  has pre-existing repo-wide drift (confirmed via `git stash` — even
+  already-committed reference files like `use-state-basics` fail it), left
+  out of scope.
+- Updated `tooling/concept-manifest.ts`, `concepts/README.md`'s status
+  table, and this doc's status-at-a-glance/hooks tables/Next-up section
+  once, serially, from the orchestrating session (not per-subagent), per
+  `concepts/CLAUDE.md`'s parallelization guidance.
 
 ### 2026-09-08
 

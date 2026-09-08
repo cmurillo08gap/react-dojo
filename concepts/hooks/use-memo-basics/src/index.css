@@ -147,6 +147,12 @@ body {
   flex-wrap: wrap;
 }
 
+.demo-hint {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 button {
   font: inherit;
   padding: 0.5rem 0.85rem;
@@ -210,4 +216,59 @@ pre:last-child {
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Concept-specific: naive-vs-memoized side-by-side comparison cards */
+
+.explain-outcome.recomputes {
+  color: var(--accent);
+}
+
+.explain-outcome.bails-out {
+  color: var(--ok);
+}
+
+.variant-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 520px) {
+  .variant-row {
+    flex-direction: column;
+  }
+}
+
+.variant-card {
+  flex: 1;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 0.85rem;
+}
+
+.variant-card[data-flavor="naive"] {
+  border-color: var(--danger);
+}
+
+.variant-card[data-flavor="memoized"] {
+  border-color: var(--ok);
+}
+
+.variant-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.variant-metric {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+}
+
+.variant-metric:last-child {
+  margin-bottom: 0;
 }

@@ -167,6 +167,11 @@ button[data-active="true"] {
   color: var(--accent-fg);
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .explain {
   grid-column: 1 / -1;
 }
@@ -210,4 +215,68 @@ pre:last-child {
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Concept-specific: ticker subscription demo */
+
+.demo-hint {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.subscriber-slot {
+  margin: 1rem 0;
+}
+
+.mini-counter {
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.mini-counter[data-flavor="unstable"] {
+  border-color: var(--danger);
+}
+
+.mini-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mini-count {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.tick-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.tick-log li {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  background: var(--bg);
+}
+
+.tick-log li[data-leaked="true"] {
+  border-color: var(--danger);
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.tick-log-empty {
+  border-style: dashed;
+  color: var(--muted);
+  font-style: italic;
 }

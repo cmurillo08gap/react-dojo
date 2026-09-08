@@ -14,7 +14,7 @@ Tags: `memoization` `re-renders` `profiling` `code-splitting`
   boundary, virtualization if the list itself is the bottleneck (not
   re-renders).
 - **Follow-ups:**
-  - How would you *prove* this diagnosis using the React DevTools Profiler
+  - How would you _prove_ this diagnosis using the React DevTools Profiler
     before writing any fix?
 
 ---
@@ -54,6 +54,6 @@ Tags: `memoization` `re-renders` `profiling` `code-splitting`
 
 - **Difficulty:** hard
 - **Discussion points:** React DevTools Profiler flame chart + "why did
-  this render" highlighting; distinguish an *expensive* render from a
-  *wasteful* (unnecessary) one — they need different fixes; communicating
+  this render" highlighting; distinguish an _expensive_ render from a
+  _wasteful_ (unnecessary) one — they need different fixes; communicating
   with before/after profiler screenshots or commit counts, not vibes.

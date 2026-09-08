@@ -34,7 +34,7 @@ that ran and why — click through all four buttons, in particular comparing
   a `useEffect`/`useCallback` dependency array.
 - Calling the setter with a value referentially equal (`Object.is`) to the
   current state **bails out** of the re-render (still runs the render
-  function on the *first* call in dev/StrictMode double-invoke, but skips
+  function on the _first_ call in dev/StrictMode double-invoke, but skips
   committing/re-rendering children).
 
 ## Discussion / interview questions

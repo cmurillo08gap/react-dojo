@@ -14,11 +14,11 @@ file, before trusting either.
 
 ## Index
 
-| Plan                          | Covers                                    | Status  |
-| ------------------------------ | ------------------------------------------ | ------- |
-| [`concepts.md`](concepts.md) | `concepts/` — one plan per category       | active  |
-| `challenges.md`               | `challenges/` bank                        | not started |
-| `interviews.md`                | `interviews/question-bank/` + session flow | not started |
+| Plan                         | Covers                                     | Status      |
+| ---------------------------- | ------------------------------------------ | ----------- |
+| [`concepts.md`](concepts.md) | `concepts/` — one plan per category        | active      |
+| `challenges.md`              | `challenges/` bank                         | not started |
+| `interviews.md`              | `interviews/question-bank/` + session flow | not started |
 
 ## How to use these across sessions
 
@@ -26,7 +26,7 @@ file, before trusting either.
    the current status table, backlog, and the most recent session log entry.
 2. Doing the work: follow the relevant section of the root
    [`CLAUDE.md`](../../CLAUDE.md) for the actual conventions (layout, TDD
-   order, etc.) — the plan tracks *what*/*status*, CLAUDE.md governs *how*.
+   order, etc.) — the plan tracks _what_/_status_, CLAUDE.md governs _how_.
 3. Wrapping up a session: update the status table for anything you
    built/changed, and append a dated entry to the session log with what
    shipped and what's next. Keep entries short — a few bullets, not a

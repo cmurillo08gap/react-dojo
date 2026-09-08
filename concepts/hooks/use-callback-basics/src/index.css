@@ -211,3 +211,62 @@ pre:last-child {
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
+
+/* Concept-specific: variant toggle + memoized child render-count display */
+
+.demo-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.variant-toggle {
+  margin-bottom: 1rem;
+}
+
+.parent-counter {
+  line-height: 1.6;
+}
+
+.child-box-wrap {
+  border-radius: 8px;
+  padding: 2px;
+  margin-bottom: 0.4rem;
+}
+
+.child-box-wrap[data-variant="naive"] {
+  background: color-mix(in srgb, var(--danger) 35%, transparent);
+}
+
+.child-box-wrap[data-variant="stabilized"] {
+  background: color-mix(in srgb, var(--ok) 35%, transparent);
+}
+
+.child-box {
+  border: 1px dashed var(--border);
+  border-radius: 7px;
+  background: var(--card-bg);
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.mini-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mini-count {
+  margin: 0 0 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.child-hint {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+}

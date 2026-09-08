@@ -211,3 +211,66 @@ pre:last-child {
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
+
+/* Concept-specific: naive vs. useToggle widget rows */
+
+.widget-row {
+  display: flex;
+  gap: 1rem;
+  margin: 0.75rem 0 1.25rem;
+  flex-wrap: wrap;
+}
+
+.widget-row:last-child {
+  margin-bottom: 0;
+}
+
+.widget {
+  flex: 1;
+  min-width: 140px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 0.85rem;
+}
+
+.widget[data-flavor="naive"] {
+  border-color: var(--danger);
+}
+
+.widget[data-flavor="hook"] {
+  border-color: var(--ok);
+}
+
+.widget-label {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.widget-content {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.widget-overlay {
+  margin-top: 0.6rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.widget-overlay p {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.explain-outcome.naive {
+  color: var(--danger);
+}
+
+.explain-outcome.hook {
+  color: var(--ok);
+}

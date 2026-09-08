@@ -28,17 +28,17 @@ the collapsed reference solution in the challenge's `README.md`.
 
 ## Difficulty tiers
 
-| Tier     | Focus                                                                    |
-| -------- | ------------------------------------------------------------------------- |
-| `easy`   | Array/string/object fundamentals, basic hook mechanics                   |
-| `medium` | Custom hooks, async control flow, component composition, debouncing/throttling |
+| Tier     | Focus                                                                                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `easy`   | Array/string/object fundamentals, basic hook mechanics                                                                                                     |
+| `medium` | Custom hooks, async control flow, component composition, debouncing/throttling                                                                             |
 | `hard`   | Performance optimization under constraints, tricky state/race-condition bugs, mini system design (e.g. build a virtualized list, a cache, a state machine) |
 
 ## Status
 
-| Challenge                                          | Tier | Status        |
-| ----------------------------------------------------- | ---- | ------------- |
-| [`easy/flatten-array`](easy/flatten-array)         | easy | 🟡 unsolved (template) |
+| Challenge                                  | Tier | Status                 |
+| ------------------------------------------ | ---- | ---------------------- |
+| [`easy/flatten-array`](easy/flatten-array) | easy | 🟡 unsolved (template) |
 
 _Add a row here as you add each new challenge package. Status: 🟡 unsolved · 🟢 solved._
 

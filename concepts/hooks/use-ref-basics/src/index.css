@@ -147,6 +147,12 @@ body {
   flex-wrap: wrap;
 }
 
+.demo-hint {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 button {
   font: inherit;
   padding: 0.5rem 0.85rem;
@@ -210,4 +216,84 @@ pre:last-child {
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Concept-specific: ref-vs-state mini counters, DOM ref row, and the
+   extra "what just happened" outcome flavors this concept needs beyond
+   the shared buggy/correct pair. */
+
+.demo-subhead {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--accent-demo);
+}
+
+.demo-subhead:not(:first-of-type) {
+  margin-top: 1.5rem;
+}
+
+.mini-counter-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mini-counter {
+  flex: 1;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.mini-counter[data-flavor="ref"] {
+  border-color: var(--danger);
+}
+
+.mini-counter[data-flavor="state"] {
+  border-color: var(--ok);
+}
+
+.mini-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.mini-count {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.dom-ref-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.dom-ref-row input {
+  flex: 1;
+  font: inherit;
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.explain-outcome.hidden {
+  color: var(--danger);
+}
+
+.explain-outcome.visible {
+  color: var(--ok);
+}
+
+.explain-outcome.revealed {
+  color: var(--accent-explain);
+}
+
+.explain-outcome.imperative {
+  color: var(--accent-demo);
 }

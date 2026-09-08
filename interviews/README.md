@@ -26,13 +26,13 @@ number of questions, seniority level).
 
 ## Question bank
 
-| File                                                          | Topic                                             |
-| --------------------------------------------------------------- | ---------------------------------------------------- |
-| [`fundamentals.md`](question-bank/fundamentals.md)             | JSX, rendering, props/state, lists & keys        |
-| [`hooks-and-state.md`](question-bank/hooks-and-state.md)       | Hook rules, `useEffect` pitfalls, custom hooks   |
-| [`performance.md`](question-bank/performance.md)               | Memoization, re-renders, profiling, code-splitting |
-| [`system-design.md`](question-bank/system-design.md)           | Component/data architecture, larger open-ended problems |
-| [`behavioral.md`](question-bank/behavioral.md)                 | Collaboration, code review, incident/debugging stories |
+| File                                                     | Topic                                                   |
+| -------------------------------------------------------- | ------------------------------------------------------- |
+| [`fundamentals.md`](question-bank/fundamentals.md)       | JSX, rendering, props/state, lists & keys               |
+| [`hooks-and-state.md`](question-bank/hooks-and-state.md) | Hook rules, `useEffect` pitfalls, custom hooks          |
+| [`performance.md`](question-bank/performance.md)         | Memoization, re-renders, profiling, code-splitting      |
+| [`system-design.md`](question-bank/system-design.md)     | Component/data architecture, larger open-ended problems |
+| [`behavioral.md`](question-bank/behavioral.md)           | Collaboration, code review, incident/debugging stories  |
 
 Each entry has a difficulty tag, expected discussion points (not a rigid
 script), and 1-2 natural follow-ups. Add questions as you encounter them in

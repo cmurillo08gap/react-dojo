@@ -76,6 +76,7 @@ Write the full Q&A (including follow-ups) plus the debrief to
 ## Q&A
 
 ### Q1. <question>
+
 **A:** <candidate's answer, summarized or verbatim>
 **Follow-up:** <if any>
 

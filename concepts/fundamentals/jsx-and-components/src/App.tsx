@@ -119,10 +119,10 @@ export function App() {
               throws away that subtree's local state and re-runs its effects.
             </li>
             <li>
-              A child's own state update only re-renders <em>that child</em>, never its parent —
-              so clicking a counter's own <code>+1</code> can't trigger this bug by itself. It
-              takes something else re-rendering the parent (an unrelated state change, a new
-              prop) to redefine — and reset — a nested component.
+              A child's own state update only re-renders <em>that child</em>, never its parent — so
+              clicking a counter's own <code>+1</code> can't trigger this bug by itself. It takes
+              something else re-rendering the parent (an unrelated state change, a new prop) to
+              redefine — and reset — a nested component.
             </li>
           </ul>
         </section>
@@ -160,8 +160,8 @@ export function App() {
               <p>
                 <span className="explain-outcome buggy">⚠ Buggy: </span>
                 App re-rendered, which redefines UnstableCounter as a NEW function object. React
-                sees a different element "type" where UnstableCounter used to be, so it unmounts
-                the old instance (losing its count) and mounts a fresh one at 0. StableCounter's
+                sees a different element "type" where UnstableCounter used to be, so it unmounts the
+                old instance (losing its count) and mounts a fresh one at 0. StableCounter's
                 identity never changed, so its count survived untouched.
               </p>
               <pre>

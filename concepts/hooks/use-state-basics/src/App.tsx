@@ -104,8 +104,8 @@ export function App() {
         <h1>useState basics</h1>
         <p>
           State is local to the component instance and persists across re-renders. The{" "}
-          <strong>updater function</strong> form of the setter reads the latest state, which
-          matters whenever a handler queues more than one update in the same pass.
+          <strong>updater function</strong> form of the setter reads the latest state, which matters
+          whenever a handler queues more than one update in the same pass.
         </p>
       </header>
 
@@ -136,8 +136,8 @@ export function App() {
             </li>
             <li>
               The <code>[count, setCount]</code> names are array destructuring — the hook always
-              returns a two-item <code>[value, setter]</code> tuple, so you're free to name the
-              pair whatever fits (<code>[isOpen, setIsOpen]</code>, etc.).
+              returns a two-item <code>[value, setter]</code> tuple, so you're free to name the pair
+              whatever fits (<code>[isOpen, setIsOpen]</code>, etc.).
             </li>
           </ul>
 
@@ -148,12 +148,12 @@ export function App() {
               previous state.
             </li>
             <li>
-              <code>useState</code>'s setter identity is stable across renders — safe to omit
-              from a dependency array.
+              <code>useState</code>'s setter identity is stable across renders — safe to omit from a
+              dependency array.
             </li>
             <li>
-              React <strong>batches</strong> state updates queued in the same event handler into
-              a single re-render.
+              React <strong>batches</strong> state updates queued in the same event handler into a
+              single re-render.
             </li>
             <li>
               A value-form call (<code>setCount(count + 1)</code>) closes over whatever{" "}

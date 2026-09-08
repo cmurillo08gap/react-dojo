@@ -21,7 +21,7 @@ than a rigid recitation.
 - **Difficulty:** n/a
 - **Evaluate for:** systematic debugging (bisecting, reading the actual
   stack/diff, forming and testing a hypothesis) vs. trial-and-error;
-  whether they can explain *why* the fix worked, not just that it did.
+  whether they can explain _why_ the fix worked, not just that it did.
 
 ---
 
@@ -45,4 +45,4 @@ than a rigid recitation.
 
 - **Difficulty:** n/a
 - **Evaluate for:** clarity + kindness balance, whether they explained the
-  *why*, whether they left room for the author to still learn it themselves.
+  _why_, whether they left room for the author to still learn it themselves.
