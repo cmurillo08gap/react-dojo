@@ -54,7 +54,13 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 | `performance`         | Memoization, code-splitting, virtualization, profiling                                  |
 | `patterns`            | Compound components, render props, controlled/uncontrolled, HOCs                        |
 | `testing`             | React Testing Library, Vitest, mocking, accessibility queries                           |
-| `architecture`        | Project structure, data-fetching patterns, Server Components (conceptually)             |
+
+`architecture` (project structure, data-fetching patterns, Server
+Components conceptually) was considered and **deliberately excluded** —
+none of it fit this repo's "small, runnable Vite app" format. See the
+decision record in [`docs/plans/concepts.md`](../docs/plans/concepts.md)
+(`## architecture`) for why, and where that material lives instead
+(`interviews/question-bank/system-design.md`).
 
 ## Status
 

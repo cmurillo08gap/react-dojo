@@ -17,9 +17,10 @@ Before starting, confirm with the user — briefly, one message, sensible
 defaults if they just say "go":
 
 - **Topic focus**: one or more of `fundamentals`, `hooks-and-state`,
-  `performance`, `system-design`, `behavioral` (from
-  `interviews/question-bank/`), or "mixed". Default: mixed, weighted toward
-  hooks-and-state + performance.
+  `state-management`, `forms-and-actions`, `concurrent-features`,
+  `performance`, `patterns`, `testing`, `system-design`, `behavioral`
+  (from `interviews/question-bank/`), or "mixed". Default: mixed, weighted
+  toward hooks-and-state + performance.
 - **Seniority level**: junior / mid / senior / staff. This changes how deep
   you probe and what counts as a strong answer (e.g. a senior candidate
   should proactively discuss trade-offs and testing strategy, not just

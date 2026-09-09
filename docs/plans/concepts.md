@@ -45,19 +45,19 @@ category leans on the ones above it (state management assumes fundamentals
 
 ## Status at a glance
 
-Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
+Legend: ✅ built · 🚧 in progress · 📋 scoped, not started · ❌ excluded.
 
-| Category              | Built |  Scoped (planned)   | Status              |
-| --------------------- | :---: | :-----------------: | ------------------- |
-| `fundamentals`        |   4   |          0          | ✅ complete for now |
-| `hooks`               |   6   |          0          | ✅ complete for now |
-| `state-management`    |   4   |          0          | ✅ complete for now |
-| `forms-and-actions`   |   5   |          0          | ✅ complete for now |
-| `concurrent-features` |   4   |          0          | ✅ complete for now |
-| `performance`         |   4   |          0          | ✅ complete for now |
-| `patterns`            |   4   |          0          | ✅ complete for now |
-| `testing`             |   4   |          0          | ✅ complete for now |
-| `architecture`        |   0   | 2 (+ open question) | 📋 partially scoped |
+| Category              | Built | Scoped (planned) | Status                           |
+| --------------------- | :---: | :--------------: | -------------------------------- |
+| `fundamentals`        |   4   |        0         | ✅ complete for now              |
+| `hooks`               |   6   |        0         | ✅ complete for now              |
+| `state-management`    |   4   |        0         | ✅ complete for now              |
+| `forms-and-actions`   |   5   |        0         | ✅ complete for now              |
+| `concurrent-features` |   4   |        0         | ✅ complete for now              |
+| `performance`         |   4   |        0         | ✅ complete for now              |
+| `patterns`            |   4   |        0         | ✅ complete for now              |
+| `testing`             |   4   |        0         | ✅ complete for now              |
+| `architecture`        |   —   |        —         | ❌ excluded — see decision below |
 
 "Scoped" means a slug and a concrete core idea/contrast are decided below —
 not that a README or code exists yet. Update this table's counts whenever
@@ -161,28 +161,39 @@ Covers: React Testing Library, Vitest, mocking, accessibility queries.
 
 ## `architecture`
 
-Covers: project structure, data-fetching patterns, Server Components
-(conceptually).
+**Decision (2026-09-09): excluded from `concepts/` entirely** — not scoped,
+not planned, and not coming back later without a fresh scoping discussion.
+This would have covered: project structure, data-fetching patterns, Server
+Components (conceptually).
 
-| Package                          | Status | Core idea / contrast                                                                                                                                    |
-| -------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data-fetching-patterns`         | 📋     | A waterfall of sequential `useEffect` fetches (each blocked on the last) vs. kicking off independent requests in parallel and combining loading states. |
-| `server-components-conceptually` | 📋 ⚠️  | See open question below before building — this repo's packages are Vite/CSR-only, so an actual RSC boundary can't run here.                             |
-
-**Open questions (resolve before building further in this category):**
+Both packages sketched below ran into the same wall the open questions
+(kept here for context) had already flagged: neither actually fits this
+repo's "small, runnable Vite app" format, which is the entire pedagogical
+point of `concepts/*` (see `concepts/README.md` / `concepts/CLAUDE.md`) —
+so rather than force a workaround format (a README-only package, a
+diagram-heavy write-up with no live demo) that breaks the one rule every
+other concept package follows, the category is dropped.
 
 - `server-components-conceptually` can't be a normal runnable Vite app the
-  way every other concept is (no server, no RSC runtime) — decide whether
-  it becomes a comparison-only README (breaking the "must be a runnable
-  demo" rule deliberately, with that noted explicitly), a diagram-heavy
-  in-app write-up with no live demo panel, or gets dropped in favor of
-  covering the idea inside `data-fetching-patterns`' README instead of as
-  its own package.
-- Project structure (folder-by-feature vs. folder-by-type, etc.) doesn't
-  obviously fit the "small runnable idea" concept-app format either — it
-  may be better suited to a repo-level architecture doc than a
-  `concepts/architecture/*` package. Decide the format before scoping it
-  as a package here.
+  way every other concept is — no server, no RSC runtime — this repo's
+  packages are Vite/CSR-only, so an actual RSC boundary can't run here.
+- `data-fetching-patterns` (waterfall `useEffect` fetches vs. parallel
+  requests) could technically run as a normal concept app, but it was
+  scoped as this category's other half; splitting it out alone would leave
+  `architecture` a category of exactly one package, which isn't worth
+  keeping open. It's also arguably a better fit as an open-ended interview
+  question than a fixed-contrast demo (see below).
+- Project structure (folder-by-feature vs. folder-by-type, etc.) never fit
+  the "one small runnable idea" shape either — it's a repo-level
+  organizational discussion, not a demo.
+
+**Where this material actually lives instead:** these are exactly the
+open-ended, no-single-"correct"-contrast questions a real interview asks
+without expecting a live demo — they're covered as interview-prep
+material in [`interviews/question-bank/system-design.md`](../../interviews/question-bank/system-design.md)
+instead (data-fetching waterfalls/de-duplication, auth structuring, and
+design-system component APIs already live there). See
+[`docs/plans/interviews.md`](interviews.md) for how that bank is scoped.
 
 ## Next up
 
@@ -197,9 +208,23 @@ this isn't arbitrary, but it's not a hard constraint either:
 6. ~~`performance`~~ ✅ done
 7. ~~`patterns`~~ ✅ done
 8. ~~`testing`~~ ✅ done
-9. `architecture` — resolve the open questions above first — up next
+9. ~~`architecture`~~ ❌ excluded (2026-09-09) — see the decision above;
+   not coming back without a fresh scoping discussion
 
 ## Session log
+
+### 2026-09-09 (architecture excluded; interviews planning doc added)
+
+- Decided to exclude `concepts/architecture` entirely rather than resolve
+  its two open questions by forcing a workaround format — see the decision
+  record in the `architecture` section above. Updated the status-at-a-
+  glance table (❌ excluded) and `concepts/README.md`'s categories table to
+  match (row removed, footnote added pointing here).
+- Added [`docs/plans/interviews.md`](interviews.md): a build-status/backlog
+  doc for `interviews/question-bank/*.md`, cross-referenced against every
+  `concepts/*` category (including a note on where the now-excluded
+  `architecture` ideas live instead — `system-design.md`), then built out
+  the gap it identified. See that doc's own session log for details.
 
 ### 2026-09-08 (performance category completed)
 
