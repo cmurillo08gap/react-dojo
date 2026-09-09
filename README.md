@@ -16,6 +16,7 @@ react-dojo/
 │   ├── question-bank/
 │   └── sessions/
 ├── gallery/              # landing page linking to every concept's dev server
+├── playground/            # free-form plain-JS React sandbox — bring your own code
 ├── resources/             # curated external links, cheat sheets
 ├── tooling/                # shared Vite config factory + the concept port manifest
 ├── docs/plans/               # cross-session tracking: what's built, backlog, session log
