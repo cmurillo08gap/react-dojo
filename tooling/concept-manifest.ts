@@ -205,4 +205,32 @@ export const CONCEPTS: ConceptManifestEntry[] = [
     packageName: "concept-use-api-basics",
     port: 5344,
   },
+  {
+    category: "patterns",
+    slug: "compound-components",
+    title: "Compound components",
+    packageName: "concept-compound-components",
+    port: 5361,
+  },
+  {
+    category: "patterns",
+    slug: "render-props",
+    title: "Render props",
+    packageName: "concept-render-props",
+    port: 5362,
+  },
+  {
+    category: "patterns",
+    slug: "controlled-vs-uncontrolled-components",
+    title: "Controlled vs. uncontrolled components",
+    packageName: "concept-controlled-vs-uncontrolled-components",
+    port: 5363,
+  },
+  {
+    category: "patterns",
+    slug: "higher-order-components",
+    title: "Higher-order components",
+    packageName: "concept-higher-order-components",
+    port: 5364,
+  },
 ];

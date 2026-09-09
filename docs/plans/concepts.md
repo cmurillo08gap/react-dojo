@@ -55,7 +55,7 @@ Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
 | `forms-and-actions`   |   5   |          0          | ✅ complete for now |
 | `concurrent-features` |   4   |          0          | ✅ complete for now |
 | `performance`         |   0   |          4          | 📋 scoped           |
-| `patterns`            |   0   |          4          | 📋 scoped           |
+| `patterns`            |   4   |          0          | ✅ complete for now |
 | `testing`             |   0   |          4          | 📋 scoped           |
 | `architecture`        |   0   | 2 (+ open question) | 📋 partially scoped |
 
@@ -143,10 +143,10 @@ Covers: compound components, render props, controlled/uncontrolled, HOCs.
 
 | Package                                 | Status | Core idea / contrast                                                                                                                                                                                                                                                       |
 | --------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `compound-components`                   | 📋     | A `<Tabs>`/`<Tab>`-style API sharing implicit state via Context internally, vs. the same feature built by prop-drilling every option down from one giant component.                                                                                                        |
-| `render-props`                          | 📋     | Sharing stateful logic via a function-as-child/prop (the pre-hooks pattern) vs. the same logic extracted into a custom hook — showing _why_ hooks displaced most render-prop use cases.                                                                                    |
-| `controlled-vs-uncontrolled-components` | 📋     | The general component-design version of controlled/uncontrolled (e.g. an `<Accordion>` that can be either parent-driven via props+callback, or self-managed) — distinct from `forms-and-actions/controlled-vs-uncontrolled-inputs`, which is specifically about `<input>`. |
-| `higher-order-components`               | 📋     | A HOC injecting props (e.g. `withLoading`) vs. the equivalent custom hook — the naming-collision/prop-shadowing/wrapper-hell pitfalls that motivated moving away from HOCs.                                                                                                |
+| `compound-components`                   | ✅     | A `<Tabs>`/`<Tab>`-style API sharing implicit state via Context internally, vs. the same feature built by prop-drilling every option down from one giant component.                                                                                                        |
+| `render-props`                          | ✅     | Sharing stateful logic via a function-as-child/prop (the pre-hooks pattern) vs. the same logic extracted into a custom hook — showing _why_ hooks displaced most render-prop use cases.                                                                                    |
+| `controlled-vs-uncontrolled-components` | ✅     | The general component-design version of controlled/uncontrolled (e.g. an `<Accordion>` that can be either parent-driven via props+callback, or self-managed) — distinct from `forms-and-actions/controlled-vs-uncontrolled-inputs`, which is specifically about `<input>`. |
+| `higher-order-components`               | ✅     | A HOC injecting props (e.g. `withLoading`) vs. the equivalent custom hook — the naming-collision/prop-shadowing/wrapper-hell pitfalls that motivated moving away from HOCs.                                                                                                |
 
 ## `testing`
 
@@ -193,15 +193,87 @@ this isn't arbitrary, but it's not a hard constraint either:
 2. ~~`hooks`~~ ✅ done
 3. ~~`state-management`~~ ✅ done
 4. ~~`forms-and-actions`~~ ✅ done
-5. `concurrent-features` — up next; leans on `state-management`
+5. ~~`concurrent-features`~~ ✅ done
 6. `performance` (pairs well with `hooks/use-memo-basics` +
-   `hooks/use-callback-basics` — consider interleaving)
-7. `patterns`
+   `hooks/use-callback-basics` — consider interleaving) — up next
+7. ~~`patterns`~~ ✅ done
 8. `testing` (arguably worth pulling earlier — nothing here depends on it
    existing last, it's just been convention to test what already exists)
 9. `architecture` — resolve the open questions above first
 
 ## Session log
+
+### 2026-09-08 (patterns category completed)
+
+- Built all 4 `patterns` packages in parallel via 4 subagents, each scoped
+  to its own package directory (`compound-components` port 5361,
+  `render-props` 5362, `controlled-vs-uncontrolled-components` 5363,
+  `higher-order-components` 5364) — `patterns` is now ✅ complete. Each
+  subagent verified its theory content against context7
+  (`/reactjs/react.dev`) before writing: `compound-components` against
+  `createContext`/`useContext` (including the React 19 `<Context
+  value={...}>` provider syntax and memoizing an object/function context
+  value) and "Passing Data Deeply with Context"'s prop-drilling-vs-context
+  framing; `render-props` against "Reusing Logic with Custom Hooks" plus
+  react.dev's own current `Children`/render-prop-shaped examples (used to
+  argue the pattern isn't purely obsolete, e.g. headless UI libraries);
+  `controlled-vs-uncontrolled-components` against "Sharing State Between
+  Components"'s controlled/uncontrolled section (the `Accordion`/`Panel`
+  example is the direct official grounding for this package) and the
+  `<input>` reference's controlled/uncontrolled caveats, cited to explain
+  why React warns natively for `<input>` but not for custom components;
+  `higher-order-components` against "Reusing Logic with Custom Hooks" —
+  this subagent also confirmed current react.dev docs no longer cover HOCs
+  as a pattern at all (the only hit was an anti-pattern warning against
+  dynamically creating a "higher-order Hook"), and said so explicitly in
+  its theory panel/README rather than presenting HOCs as current guidance.
+- Each package follows the established contrast pattern:
+  `compound-components` (a `TabsMonolith` config-array component vs.
+  `Tabs`/`Tabs.List`/`Tabs.Tab`/`Tabs.Panels`/`Tabs.Panel` sharing state via
+  Context, shown side by side with a shared "disable a tab" toggle to make
+  the prop-plumbing cost concrete); `render-props` (`<MouseTracker>`
+  function-as-children vs. `useMouseTracker()`, both driving an identical
+  cursor-tracked dot so the two wirings are visibly interchangeable);
+  `controlled-vs-uncontrolled-components` (one `Accordion` implementing the
+  "controlled if the prop is defined" convention, demoed uncontrolled,
+  controlled, and — since React has no built-in warning for custom
+  components switching modes the way it does for `<input>` — a
+  self-written `useEffect` guard whose `console.error` is captured and
+  shown inline when an instance flips modes); `higher-order-components`
+  (`withLoading` colliding with a wrapped component's own same-named
+  `isLoading` prop, proven live via a debug readout, vs. `useLoading()`
+  called directly with no collision risk, plus a static
+  `withTheme(withLoading(SaveButton))` readout making "wrapper hell"'s
+  `displayName` mangling concrete).
+- Orchestrating session then ran `pnpm install` once. `render-props` failed
+  `typecheck` (`tsc -b --noEmit`): `TS18047 'node' is possibly 'null'` in
+  both `MouseTracker.tsx` and `useMouseTracker.ts`, inside a
+  `function handleMouseMove(event) {...}` declared after an `if (!node)
+  return;` guard — TypeScript doesn't propagate narrowing of a `const`
+  into a hoisted function *declaration*'s body, only into function
+  *expressions* created after the guard. Fixed both by changing
+  `function handleMouseMove(event) {}` to `const handleMouseMove = (event)
+  => {}`; re-ran typecheck clean. The other 3 packages typechecked clean
+  with no changes needed.
+- Full-repo `pnpm lint` was clean (the one warning it surfaces is the same
+  pre-existing, unrelated issue in `challenges/easy/flatten-array` noted in
+  earlier entries below). `pnpm format` (repo-wide `prettier --write .`)
+  reformatted the new `patterns/*` files with no diff (subagents already
+  matched Prettier's output) but also rewrote ~15 older, already-committed
+  files across `forms-and-actions`/`state-management`/`concepts/README.md`/
+  this doc — pure JSX-text-wrapping/prose-width drift unrelated to this
+  session's work (consistent with the pre-existing `format:check` drift
+  flagged in the `hooks`/`forms-and-actions` entries below). Reverted those
+  unrelated files via `git checkout --` to keep this change scoped to
+  `patterns/`; left that repo-wide drift out of scope again. Kept the
+  `pnpm-lock.yaml` update (purely additive — the 4 new workspace packages).
+- Updated `tooling/concept-manifest.ts`, `concepts/README.md`'s status
+  table, and this doc's status-at-a-glance/patterns tables/Next-up section
+  once, serially, from the orchestrating session (not per-subagent), per
+  `concepts/CLAUDE.md`'s parallelization guidance. Also corrected a stale
+  "up next" marker on `concurrent-features` in the Next-up list (it was
+  already ✅ complete per the status table but the list hadn't been updated
+  since) while editing the adjacent `patterns` line.
 
 ### 2026-09-08 (forms-and-actions category completed)
 

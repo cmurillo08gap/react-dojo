@@ -83,6 +83,10 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 | [`concurrent-features/use-transition-basics`](concurrent-features/use-transition-basics) | concurrent-features | ✅ scaffolded |
 | [`concurrent-features/use-deferred-value-basics`](concurrent-features/use-deferred-value-basics) | concurrent-features | ✅ scaffolded |
 | [`concurrent-features/use-api-basics`](concurrent-features/use-api-basics) | concurrent-features | ✅ scaffolded |
+| [`patterns/compound-components`](patterns/compound-components) | patterns | ✅ scaffolded |
+| [`patterns/render-props`](patterns/render-props) | patterns | ✅ scaffolded |
+| [`patterns/controlled-vs-uncontrolled-components`](patterns/controlled-vs-uncontrolled-components) | patterns | ✅ scaffolded |
+| [`patterns/higher-order-components`](patterns/higher-order-components) | patterns | ✅ scaffolded |
 
 _Add a row here as you add each new concept package._
 
