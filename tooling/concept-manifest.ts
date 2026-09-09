@@ -177,4 +177,32 @@ export const CONCEPTS: ConceptManifestEntry[] = [
     packageName: "concept-use-optimistic-basics",
     port: 5335,
   },
+  {
+    category: "concurrent-features",
+    slug: "suspense-basics",
+    title: "Suspense basics",
+    packageName: "concept-suspense-basics",
+    port: 5341,
+  },
+  {
+    category: "concurrent-features",
+    slug: "use-transition-basics",
+    title: "useTransition basics",
+    packageName: "concept-use-transition-basics",
+    port: 5342,
+  },
+  {
+    category: "concurrent-features",
+    slug: "use-deferred-value-basics",
+    title: "useDeferredValue basics",
+    packageName: "concept-use-deferred-value-basics",
+    port: 5343,
+  },
+  {
+    category: "concurrent-features",
+    slug: "use-api-basics",
+    title: "use() API basics",
+    packageName: "concept-use-api-basics",
+    port: 5344,
+  },
 ];

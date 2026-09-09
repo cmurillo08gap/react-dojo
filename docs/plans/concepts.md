@@ -53,7 +53,7 @@ Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
 | `hooks`               |   6   |          0          | ✅ complete for now |
 | `state-management`    |   4   |          0          | ✅ complete for now |
 | `forms-and-actions`   |   5   |          0          | ✅ complete for now |
-| `concurrent-features` |   0   |          4          | 📋 scoped           |
+| `concurrent-features` |   4   |          0          | ✅ complete for now |
 | `performance`         |   0   |          4          | 📋 scoped           |
 | `patterns`            |   0   |          4          | 📋 scoped           |
 | `testing`             |   0   |          4          | 📋 scoped           |
@@ -117,14 +117,14 @@ a gap surfaces later.
 ## `concurrent-features`
 
 Covers: Suspense, transitions (`useTransition`, `useDeferredValue`), the
-`use()` API.
+`use()` API. **Fully built** — no open backlog unless a gap surfaces later.
 
 | Package                     | Status | Core idea / contrast                                                                                                                                                                                           |
 | --------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `suspense-basics`           | 📋     | A `<Suspense>` boundary with a `fallback`, wrapping a component that suspends on a pending promise/lazy import — what "suspending" actually means vs. a manual `isLoading` flag.                               |
-| `use-transition-basics`     | 📋     | An expensive render triggered synchronously (UI freezes/janks) vs. the same update wrapped in `startTransition`, using `isPending` to keep the UI responsive and interruptible.                                |
-| `use-deferred-value-basics` | 📋     | A search-as-you-type list whose expensive re-render lags every keystroke vs. rendering the list from a `useDeferredValue`-wrapped query, keeping the input itself responsive.                                  |
-| `use-api-basics`            | 📋     | The `use()` hook reading a promise or context conditionally (inside an `if`/loop — something regular hooks can't do) vs. the old `useEffect` + `useState` data-fetching dance, inside a `<Suspense>` boundary. |
+| `suspense-basics`           | ✅     | A `<Suspense>` boundary with a `fallback`, wrapping a component that suspends on a pending promise/lazy import — what "suspending" actually means vs. a manual `isLoading` flag.                               |
+| `use-transition-basics`     | ✅     | An expensive render triggered synchronously (UI freezes/janks) vs. the same update wrapped in `startTransition`, using `isPending` to keep the UI responsive and interruptible.                                |
+| `use-deferred-value-basics` | ✅     | A search-as-you-type list whose expensive re-render lags every keystroke vs. rendering the list from a `useDeferredValue`-wrapped query, keeping the input itself responsive.                                  |
+| `use-api-basics`            | ✅     | The `use()` hook reading a promise or context conditionally (inside an `if`/loop — something regular hooks can't do) vs. the old `useEffect` + `useState` data-fetching dance, inside a `<Suspense>` boundary. |
 
 ## `performance`
 

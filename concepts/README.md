@@ -79,6 +79,10 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 | [`forms-and-actions/use-action-state-basics`](forms-and-actions/use-action-state-basics) | forms-and-actions | ✅ scaffolded |
 | [`forms-and-actions/use-form-status-basics`](forms-and-actions/use-form-status-basics) | forms-and-actions | ✅ scaffolded |
 | [`forms-and-actions/use-optimistic-basics`](forms-and-actions/use-optimistic-basics) | forms-and-actions | ✅ scaffolded |
+| [`concurrent-features/suspense-basics`](concurrent-features/suspense-basics) | concurrent-features | ✅ scaffolded |
+| [`concurrent-features/use-transition-basics`](concurrent-features/use-transition-basics) | concurrent-features | ✅ scaffolded |
+| [`concurrent-features/use-deferred-value-basics`](concurrent-features/use-deferred-value-basics) | concurrent-features | ✅ scaffolded |
+| [`concurrent-features/use-api-basics`](concurrent-features/use-api-basics) | concurrent-features | ✅ scaffolded |
 
 _Add a row here as you add each new concept package._
 
