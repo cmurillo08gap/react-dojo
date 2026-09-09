@@ -83,6 +83,10 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 | [`concurrent-features/use-transition-basics`](concurrent-features/use-transition-basics)                     | concurrent-features | ✅ scaffolded |
 | [`concurrent-features/use-deferred-value-basics`](concurrent-features/use-deferred-value-basics)             | concurrent-features | ✅ scaffolded |
 | [`concurrent-features/use-api-basics`](concurrent-features/use-api-basics)                                   | concurrent-features | ✅ scaffolded |
+| [`performance/react-memo-basics`](performance/react-memo-basics)                                             | performance         | ✅ scaffolded |
+| [`performance/code-splitting-lazy`](performance/code-splitting-lazy)                                         | performance         | ✅ scaffolded |
+| [`performance/list-virtualization`](performance/list-virtualization)                                         | performance         | ✅ scaffolded |
+| [`performance/profiling-with-devtools`](performance/profiling-with-devtools)                                 | performance         | ✅ scaffolded |
 | [`patterns/compound-components`](patterns/compound-components)                                               | patterns            | ✅ scaffolded |
 | [`patterns/render-props`](patterns/render-props)                                                             | patterns            | ✅ scaffolded |
 | [`patterns/controlled-vs-uncontrolled-components`](patterns/controlled-vs-uncontrolled-components)           | patterns            | ✅ scaffolded |

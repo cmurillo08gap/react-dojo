@@ -54,7 +54,7 @@ Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
 | `state-management`    |   4   |          0          | ✅ complete for now |
 | `forms-and-actions`   |   5   |          0          | ✅ complete for now |
 | `concurrent-features` |   4   |          0          | ✅ complete for now |
-| `performance`         |   0   |          4          | 📋 scoped           |
+| `performance`         |   4   |          0          | ✅ complete for now |
 | `patterns`            |   4   |          0          | ✅ complete for now |
 | `testing`             |   4   |          0          | ✅ complete for now |
 | `architecture`        |   0   | 2 (+ open question) | 📋 partially scoped |
@@ -132,10 +132,10 @@ Covers: memoization, code-splitting, virtualization, profiling.
 
 | Package                   | Status | Core idea / contrast                                                                                                                                                                                                                        |
 | ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `react-memo-basics`       | 📋     | A child re-rendering every time its parent does, even with unchanged props, vs. wrapped in `React.memo`. Include the pitfall that a fresh object/array/function prop each render (see `hooks/use-callback-basics`) defeats the memoization. |
-| `code-splitting-lazy`     | 📋     | One large upfront bundle vs. `React.lazy` + `Suspense` splitting a rarely-used view into its own chunk, shown via the Network panel / a visible loading fallback.                                                                           |
-| `list-virtualization`     | 📋     | Rendering a few thousand DOM nodes for a long list (visible jank on scroll) vs. windowing so only the visible slice is ever mounted.                                                                                                        |
-| `profiling-with-devtools` | 📋     | A deliberately over-rendering component tree instrumented with the `<Profiler>` API (or a walkthrough of React DevTools' Profiler tab) to _find_ the problem the other performance packages fix.                                            |
+| `react-memo-basics`       | ✅     | A child re-rendering every time its parent does, even with unchanged props, vs. wrapped in `React.memo`. Include the pitfall that a fresh object/array/function prop each render (see `hooks/use-callback-basics`) defeats the memoization. |
+| `code-splitting-lazy`     | ✅     | One large upfront bundle vs. `React.lazy` + `Suspense` splitting a rarely-used view into its own chunk, shown via the Network panel / a visible loading fallback.                                                                           |
+| `list-virtualization`     | ✅     | Rendering a few thousand DOM nodes for a long list (visible jank on scroll) vs. windowing so only the visible slice is ever mounted.                                                                                                        |
+| `profiling-with-devtools` | ✅     | A deliberately over-rendering component tree instrumented with the `<Profiler>` API (or a walkthrough of React DevTools' Profiler tab) to _find_ the problem the other performance packages fix.                                            |
 
 ## `patterns`
 
@@ -194,13 +194,78 @@ this isn't arbitrary, but it's not a hard constraint either:
 3. ~~`state-management`~~ ✅ done
 4. ~~`forms-and-actions`~~ ✅ done
 5. ~~`concurrent-features`~~ ✅ done
-6. `performance` (pairs well with `hooks/use-memo-basics` +
-   `hooks/use-callback-basics` — consider interleaving) — up next
+6. ~~`performance`~~ ✅ done
 7. ~~`patterns`~~ ✅ done
 8. ~~`testing`~~ ✅ done
-9. `architecture` — resolve the open questions above first
+9. `architecture` — resolve the open questions above first — up next
 
 ## Session log
+
+### 2026-09-08 (performance category completed)
+
+- Built all 4 `performance` packages in parallel via 4 subagents, each
+  scoped to its own package directory (`react-memo-basics` port 5351,
+  `code-splitting-lazy` 5352, `list-virtualization` 5353,
+  `profiling-with-devtools` 5354) — `performance` is now ✅ complete. Each
+  subagent was handed pre-verified context7 facts (`/react/react`,
+  v19.2.7) rather than re-querying independently, since the orchestrating
+  session had already pulled current docs for `React.memo`'s shallow-equal
+  bail-out mechanism, `React.lazy`/`Suspense`'s code-splitting pattern, and
+  the `<Profiler>` `onRender` callback signature before fanning out — one
+  subagent (`profiling-with-devtools`) caught and corrected a naming
+  mismatch in that pre-supplied brief anyway (`startTime`/`commitTime`, not
+  `actualStartTime`/`commitStartTime`), verified against both the
+  installed `@types/react@19.2.18` and a fresh context7 pull.
+- Each package follows the established contrast pattern: `react-memo-basics`
+  (plain child vs. `React.memo` defeated by a fresh inline `onPing` vs. the
+  same memoized child given a `useCallback`-stabilized `onPing`, with a
+  live "Renders: N" badge per child); `code-splitting-lazy` (a statically
+  imported `EagerPanel` vs. a `React.lazy`-loaded `HeavyPanel` behind
+  `Suspense`, with an artificial import delay so the fallback is reliably
+  visible, and a documented `pnpm build` step proving `HeavyPanel` lands in
+  its own chunk); `list-virtualization` (naive render of 5,000 rows vs.
+  hand-rolled windowing — `startIndex`/`endIndex` derived from `scrollTop`
+  in render, not an effect — with a live "rows mounted" counter as the
+  in-app proxy for DOM node count); `profiling-with-devtools` (an
+  unmemoized three-child tree wrapped in React's built-in `<Profiler>`,
+  logging `actualDuration`/`baseDuration` per commit, toggled against a
+  `React.memo`-optimized twin of the same tree to make the savings
+  concrete, with the README pointing to React DevTools' Profiler tab as
+  the real tool this in-app table stands in for).
+- Orchestrating session then ran `pnpm install` once (38 workspace
+  projects, up from 34) and `pnpm lint`, which caught a real bug in
+  `react-memo-basics`: it mutated a `useRef` during render
+  (`renderCount.current += 1`) to count renders, which this repo's
+  `eslint-plugin-react-hooks` recommended rules flag as an error
+  (`react-hooks/refs` — React's render-purity rule, since a component may
+  be rendered more than once per commit under StrictMode/concurrent
+  features). Tried a state+effect counter keyed on the child's own props
+  as a rule-compliant alternative, but that tripped a second rule
+  (`react-hooks/set-state-in-effect`) for calling `setState` synchronously
+  in an effect body. Settled on keeping the `useRef` mutation (it's the
+  only technique that actually counts direct function-body executions)
+  behind one explicit, narrowly-scoped `eslint-disable-next-line` comment
+  explaining why this specific diagnostic-only, self-contained case is the
+  sole exception in the repo — plus a callout in the demo about
+  `<StrictMode>` double-invoking render functions on mount, so badges may
+  start at "Renders: 2" instead of 1.
+- Full-repo `pnpm typecheck` passed clean across all 38 packages. `pnpm
+lint` was clean after the fix above (the one warning it surfaces is the
+  same pre-existing, unrelated issue in `challenges/easy/flatten-array`
+  noted in earlier entries below). `pnpm format` (repo-wide, `prettier
+--write .`) reformatted the 4 new `performance/*` packages (subagents
+  hadn't run Prettier themselves) but also rewrote ~15 older,
+  already-committed files across `forms-and-actions`/`state-management` —
+  the same pure prose-width/JSX-wrapping drift flagged as pre-existing and
+  out of scope in every prior entry below. Reverted those via `git checkout
+--` to keep this change scoped to `performance/`. Manually verified
+  `concept-code-splitting-lazy`'s `pnpm build` actually produces a separate
+  `HeavyPanel-*.js` chunk distinct from the main bundle, matching what its
+  README tells the learner to check.
+- Updated `tooling/concept-manifest.ts`, `concepts/README.md`'s status
+  table, and this doc's status-at-a-glance/performance tables/Next-up
+  section once, serially, from the orchestrating session (not
+  per-subagent), per `concepts/CLAUDE.md`'s parallelization guidance.
 
 ### 2026-09-08 (testing category completed)
 

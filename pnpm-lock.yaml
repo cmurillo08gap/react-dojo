@@ -548,6 +548,94 @@ importers:
         specifier: ^6.0.0
         version: 6.4.3(@types/node@22.20.1)
 
+  concepts/performance/code-splitting-lazy:
+    dependencies:
+      react:
+        specifier: ^19.2.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.7(@types/react@19.2.18)
+      '@vitejs/plugin-react':
+        specifier: ^4.3.4
+        version: 4.7.0(vite@6.4.3(@types/node@22.20.1))
+      vite:
+        specifier: ^6.0.0
+        version: 6.4.3(@types/node@22.20.1)
+
+  concepts/performance/list-virtualization:
+    dependencies:
+      react:
+        specifier: ^19.2.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.7(@types/react@19.2.18)
+      '@vitejs/plugin-react':
+        specifier: ^4.3.4
+        version: 4.7.0(vite@6.4.3(@types/node@22.20.1))
+      vite:
+        specifier: ^6.0.0
+        version: 6.4.3(@types/node@22.20.1)
+
+  concepts/performance/profiling-with-devtools:
+    dependencies:
+      react:
+        specifier: ^19.2.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.7(@types/react@19.2.18)
+      '@vitejs/plugin-react':
+        specifier: ^4.3.4
+        version: 4.7.0(vite@6.4.3(@types/node@22.20.1))
+      vite:
+        specifier: ^6.0.0
+        version: 6.4.3(@types/node@22.20.1)
+
+  concepts/performance/react-memo-basics:
+    dependencies:
+      react:
+        specifier: ^19.2.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.7(@types/react@19.2.18)
+      '@vitejs/plugin-react':
+        specifier: ^4.3.4
+        version: 4.7.0(vite@6.4.3(@types/node@22.20.1))
+      vite:
+        specifier: ^6.0.0
+        version: 6.4.3(@types/node@22.20.1)
+
   concepts/state-management/context-basics:
     dependencies:
       react:
