@@ -56,7 +56,7 @@ Legend: ✅ built · 🚧 in progress · 📋 scoped, not started.
 | `concurrent-features` |   4   |          0          | ✅ complete for now |
 | `performance`         |   0   |          4          | 📋 scoped           |
 | `patterns`            |   4   |          0          | ✅ complete for now |
-| `testing`             |   0   |          4          | 📋 scoped           |
+| `testing`             |   4   |          0          | ✅ complete for now |
 | `architecture`        |   0   | 2 (+ open question) | 📋 partially scoped |
 
 "Scoped" means a slug and a concrete core idea/contrast are decided below —
@@ -106,13 +106,13 @@ Covers: controlled inputs, React 19 Actions, `useActionState`,
 `useFormStatus`, `useOptimistic`. **Fully built** — no open backlog unless
 a gap surfaces later.
 
-| Package                             | Status | Core idea / contrast                                                                                                                                                                                                                                                                                                                                    |
-| ----------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `controlled-vs-uncontrolled-inputs` | ✅     | `value` + `onChange` (React owns the input's value) vs. `defaultValue` + a ref (the DOM owns it), plus a live "switching trap" input that flips between the two and captures React's real console warning inline.                                                                                                                                     |
-| `form-actions-basics`               | ✅     | A traditional `onSubmit` handler with manual `preventDefault`, manual pending-state `useState`, and manual error handling vs. a React 19 `<form action={fn}>` Action — including the automatic reset of uncontrolled fields on success.                                                                                                                |
-| `use-action-state-basics`           | ✅     | `useActionState` for form state + validation error display across submissions, including the pending flag it returns, vs. the pre-19 manual `useState` equivalent (with an out-of-order-response race guard the hook makes unnecessary).                                                                                                              |
-| `use-form-status-basics`            | ✅     | A submit button nested three components deep inside a `<form>` that needs to know "is this form submitting" without prop-drilling a flag down vs. `useFormStatus` read directly in the nested component — plus a live "gotcha" demo of calling the hook in the form-rendering component itself (always reports non-pending).                          |
-| `use-optimistic-basics`             | ✅     | UI that waits for a round trip before showing a new comment vs. `useOptimistic` showing it immediately and reconciling (or rolling back) when the real response lands — a "simulate failure" toggle makes the rollback something you watch happen, not just read about.                                                                              |
+| Package                             | Status | Core idea / contrast                                                                                                                                                                                                                                                                                                         |
+| ----------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `controlled-vs-uncontrolled-inputs` | ✅     | `value` + `onChange` (React owns the input's value) vs. `defaultValue` + a ref (the DOM owns it), plus a live "switching trap" input that flips between the two and captures React's real console warning inline.                                                                                                            |
+| `form-actions-basics`               | ✅     | A traditional `onSubmit` handler with manual `preventDefault`, manual pending-state `useState`, and manual error handling vs. a React 19 `<form action={fn}>` Action — including the automatic reset of uncontrolled fields on success.                                                                                      |
+| `use-action-state-basics`           | ✅     | `useActionState` for form state + validation error display across submissions, including the pending flag it returns, vs. the pre-19 manual `useState` equivalent (with an out-of-order-response race guard the hook makes unnecessary).                                                                                     |
+| `use-form-status-basics`            | ✅     | A submit button nested three components deep inside a `<form>` that needs to know "is this form submitting" without prop-drilling a flag down vs. `useFormStatus` read directly in the nested component — plus a live "gotcha" demo of calling the hook in the form-rendering component itself (always reports non-pending). |
+| `use-optimistic-basics`             | ✅     | UI that waits for a round trip before showing a new comment vs. `useOptimistic` showing it immediately and reconciling (or rolling back) when the real response lands — a "simulate failure" toggle makes the rollback something you watch happen, not just read about.                                                      |
 
 ## `concurrent-features`
 
@@ -154,10 +154,10 @@ Covers: React Testing Library, Vitest, mocking, accessibility queries.
 
 | Package              | Status | Core idea / contrast                                                                                                                                                      |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rtl-basics`         | 📋     | `render` + `screen` + `user-event`; a test coupled to implementation details (class names, component internals) vs. one that queries and interacts the way a user would.  |
-| `testing-async-ui`   | 📋     | Testing a component with loading/error/success states from an async fetch — `findBy*`/`waitFor`, and the flaky-test pitfall of not awaiting async UI updates.             |
-| `mocking-basics`     | 📋     | A test that hits a real network call or real timers (slow, flaky) vs. mocking the module/`fetch`/timers at the boundary with Vitest's `vi.mock`/`vi.useFakeTimers`.       |
-| `accessible-queries` | 📋     | `getByRole`/`getByLabelText` and friends vs. `data-testid` as a last resort — how accessible queries double-check the UI is actually usable, not just present in the DOM. |
+| `rtl-basics`         | ✅     | `render` + `screen` + `user-event`; a test coupled to implementation details (class names, component internals) vs. one that queries and interacts the way a user would.  |
+| `testing-async-ui`   | ✅     | Testing a component with loading/error/success states from an async fetch — `findBy*`/`waitFor`, and the flaky-test pitfall of not awaiting async UI updates.             |
+| `mocking-basics`     | ✅     | A test that hits a real network call or real timers (slow, flaky) vs. mocking the module/`fetch`/timers at the boundary with Vitest's `vi.mock`/`vi.useFakeTimers`.       |
+| `accessible-queries` | ✅     | `getByRole`/`getByLabelText` and friends vs. `data-testid` as a last resort — how accessible queries double-check the UI is actually usable, not just present in the DOM. |
 
 ## `architecture`
 
@@ -197,11 +197,148 @@ this isn't arbitrary, but it's not a hard constraint either:
 6. `performance` (pairs well with `hooks/use-memo-basics` +
    `hooks/use-callback-basics` — consider interleaving) — up next
 7. ~~`patterns`~~ ✅ done
-8. `testing` (arguably worth pulling earlier — nothing here depends on it
-   existing last, it's just been convention to test what already exists)
+8. ~~`testing`~~ ✅ done
 9. `architecture` — resolve the open questions above first
 
 ## Session log
+
+### 2026-09-08 (testing category completed)
+
+- Built all 4 `testing` packages in parallel via 4 subagents, each scoped
+  to its own package directory (`rtl-basics` port 5371,
+  `testing-async-ui` 5372, `mocking-basics` 5373, `accessible-queries` 5374) — `testing` is now ✅ complete. Each subagent verified React-API
+  claims against context7 (`/reactjs/react.dev`) before writing: whether
+  React Testing Library's `render` wraps children in `<StrictMode>` (it
+  doesn't, unless you pass a `wrapper`) and `act`'s role in flushing
+  pending updates for `rtl-basics`; `act`/batching semantics for
+  promise-driven state updates for `testing-async-ui`; `useEffect`'s
+  cleanup-before-next-run ordering (what makes the debounce cancel/
+  reschedule correctly) for `mocking-basics`; and that `role`/`aria-*`/
+  `tabIndex` are ordinary DOM props React does nothing special with, for
+  `accessible-queries`.
+- New infrastructure needed for this category alone: each package adds
+  `vitest`, `@testing-library/react`, `@testing-library/jest-dom`,
+  `@testing-library/user-event`, and `jsdom` as devDependencies, plus a
+  `test`/`test:watch` script (on top of the usual `dev`/`build`/
+  `preview`/`typecheck`) — a deliberate, noted exception to CLAUDE.md's
+  "concepts get dev/build, challenges get test" script convention, since
+  this category's whole point is runnable tests. Each package also gets
+  its own `vitest.config.ts` (a separate file, not a change to the shared
+  `tooling/vite-react.config.ts` factory) because Vitest ignores
+  `vite.config.ts`'s `server` block once a dedicated `vitest.config.ts`
+  exists, and the factory has no `test` option to extend anyway. A
+  `src/setupTests.ts` is imported via `vitest.config.ts`'s `setupFiles` in
+  every package to (a) import `@testing-library/jest-dom/vitest` for the
+  DOM matchers and (b) manually register `afterEach(() => cleanup())` —
+  discovered this is required, not automatic, because Testing Library's
+  own auto-cleanup only fires when it detects a _global_ `afterEach`, and
+  this repo's `vitest.config.ts` deliberately doesn't set
+  `test.globals: true` (every test file imports `describe`/`it`/`vi`/etc.
+  explicitly from `"vitest"` instead, to match the rest of the repo's
+  explicit-imports style).
+- Each package follows the established contrast pattern, made _provably_
+  real rather than just narrated (mirroring the "buggy vs. correct" habit
+  from other categories) via Vitest's `test.fails(...)` inverse-assertion
+  API — a test that's expected to throw, so the suite stays green while
+  concretely proving a failure mode: `rtl-basics` (`LikeButton` vs.
+  `LikeButtonRefactored`, same accessible role/name/behavior but different
+  class names/markup — one `describe.each`-parameterized accessible-query
+  test suite passes against both, one `container.querySelector(".like-btn")`
+  test is wrapped in `test.fails` because it only breaks against the
+  refactored version); `testing-async-ui` (`UserProfile`'s loading/success/
+  error states, mocking the `api` module boundary with `vi.mock` +
+  `vi.importActual` for a partial mock, covering `findByText`,
+  `waitForElementToBeRemoved`, and a `test.fails`-wrapped "forgot to
+  await" sync-query mistake); `mocking-basics` (`SearchBox`'s debounced
+  search — one test file genuinely pays out real timers + a real
+  simulated-latency `api` module and needs `findByText`, the other mocks
+  both the module and the clock via `vi.mock` + `vi.useFakeTimers()` +
+  `await vi.advanceTimersByTimeAsync(300)`, resolving near-instantly with
+  a plain sync query); `accessible-queries` (a `SignupForm` whose
+  newsletter toggle swaps between `SubscribeToggle`, a `<div onClick>`
+  with no role/tabIndex, and `SubscribeToggleFixed`, a real
+  `<button role="switch" aria-checked>` — `getByRole("switch", ...)`
+  is wrapped in `test.fails` against the broken version because it
+  can't be found at all, then `getByTestId` is shown as the pragmatic but
+  bug-signalling fallback).
+- All 4 subagents were cut off mid-task by a session-level rate limit
+  before finishing (`mocking-basics` was missing its `README.md` and, more
+  seriously, its entire `src/index.css` — it would not have rendered at
+  all; `testing-async-ui` was missing both its test file and `README.md`).
+  The orchestrating session finished both packages by hand after the
+  agents failed: wrote `mocking-basics/src/index.css` (copied from the
+  `hooks/use-state-basics` base + package-specific classes,
+  `search-box`/`search-results`/`explain-outcome.slow`/`.fast`, etc.) and
+  its `README.md`; wrote `testing-async-ui/src/__tests__/user-profile.test.tsx`
+  and its `README.md`. Also found and fixed the missing-`afterEach(cleanup)`
+  issue described above across all 4 packages' `setupTests.ts` (none of
+  the agents had added it, and none could have caught it by running the
+  suite themselves — dependencies weren't installed yet at that point) and
+  a stray `App.tsx` in `mocking-basics` that hid a plain `useState` call
+  behind an unnecessary wrapper function with a bottom-of-file import,
+  simplified back to a direct `useState` call matching every other
+  concept's `App.tsx`.
+- Orchestrating session then ran `pnpm install` once for all 4 new
+  packages' dependencies together, then `pnpm typecheck`/`test`/`lint`/
+  `format:check` — this surfaced three real problems the agents couldn't
+  have caught themselves (dependencies weren't installed yet while they
+  were writing code), all now fixed:
+  - **Version picking matters more than "latest."** The agents (correctly
+    told not to run `pnpm install` themselves) picked each dependency's
+    current npm version by hand. The very latest `vitest@5.0.0`,
+    `jsdom@30.0.1`, and `@testing-library/jest-dom@7.0.1` all declare
+    `engines.node` ranges that exclude this environment's Node 20.19.0
+    (jsdom 30 needs `^22.22.2`+, jest-dom 7 needs `>=22`) — jsdom failed
+    outright (`webidl.util.markAsUncloneable is not a function`, a
+    Node-version-gated internal undici API). Downgraded to
+    `jsdom@^25.0.1`/`jest-dom@^6.6.3` (both Node ≥18) — check a
+    dependency's `engines` field against the actual Node in use, not just
+    "is this the newest version," especially right after a major bump.
+  - **Mixing vitest majors across the monorepo breaks jest-dom's type
+    augmentation.** `challenges/*` already pins `vitest@^2.1.5`; the new
+    packages initially used `vitest@^3.2.4`/`^4.1.11`. jest-dom has no
+    peer-specific pnpm install variant for `vitest` (it's an optional
+    peer), so pnpm resolves its ambient `import 'vitest'` through a
+    single shared "any version will do" symlink at
+    `node_modules/.pnpm/node_modules/vitest` — which pointed at whichever
+    vitest the _other_ packages happened to hoist. jest-dom's
+    `declare module 'vitest' { interface Assertion ... }` augmentation
+    landed on that unrelated version's `Assertion` type, not the one the
+    new packages' own test files actually used, so every jest-dom matcher
+    (`toBeInTheDocument`, `toHaveTextContent`, etc.) typechecked as
+    missing even though the tests passed at runtime. Fixed by pinning all
+    4 new packages to `vitest@^2.1.9`, matching `challenges/*` — one
+    vitest major repo-wide removes the ambiguity entirely. (Runtime had
+    its own version of this: with `vitest@4.1.11` specifically, jest-dom's
+    matchers didn't even apply at _runtime_ — `expect().toHaveTextContent`
+    threw "Invalid Chai property" — so version-align rather than chase the
+    newest major for this stack.)
+  - **`user-event` + `vi.useFakeTimers()` hung indefinitely** in
+    `mocking-basics`' fake-timers test, even using `user-event`'s
+    documented `advanceTimers` setup option (confirmed with a minimal
+    repro: a bare `<input>`, no React, still hung). Fixed by using
+    `fireEvent.change` instead of `user-event` for that one test — no
+    async waiting of its own, so a fake clock can't stall it — noted in
+    the theory panel/README as a narrow, deliberate trade-off rather than
+    a general preference. Also needed a second, zero-length
+    `await vi.advanceTimersByTimeAsync(0)` after the 300ms advance, since
+    `searchApi()`'s `.then()` callback (and the `setState` inside it) is
+    created _during_ the timer callback, one microtask hop later than
+    what the first flush drains.
+  - `pnpm lint` caught a real `react-hooks/set-state-in-effect` violation
+    in `SearchBox`: synchronous `setResults`/`setIsSearching` calls at the
+    top of the debounce effect. Fixed by moving the "query cleared" reset
+    into the input's change handler (a direct response to that event, not
+    an effect's job) and moving `setIsSearching(true)` inside the
+    `setTimeout` callback instead of before scheduling it — every setState
+    in that effect now happens from within a callback, not the effect
+    body itself, which also means "Searching…" now only appears once the
+    debounce window has actually elapsed.
+  - Re-ran `pnpm typecheck`/`test`/`lint`/`format:check` (scoped to the
+    changed files for formatting, since `format:check` already fails on
+    several pre-existing, untouched files elsewhere in `concepts/`) after
+    each fix — all 4 packages end clean: typecheck, lint, and every test
+    file (36 tests total, including the 4 `test.fails` ones) passing.
 
 ### 2026-09-08 (patterns category completed)
 
@@ -212,7 +349,7 @@ this isn't arbitrary, but it's not a hard constraint either:
   subagent verified its theory content against context7
   (`/reactjs/react.dev`) before writing: `compound-components` against
   `createContext`/`useContext` (including the React 19 `<Context
-  value={...}>` provider syntax and memoizing an object/function context
+value={...}>` provider syntax and memoizing an object/function context
   value) and "Passing Data Deeply with Context"'s prop-drilling-vs-context
   framing; `render-props` against "Reusing Logic with Custom Hooks" plus
   react.dev's own current `Children`/render-prop-shaped examples (used to
@@ -249,11 +386,11 @@ this isn't arbitrary, but it's not a hard constraint either:
   `typecheck` (`tsc -b --noEmit`): `TS18047 'node' is possibly 'null'` in
   both `MouseTracker.tsx` and `useMouseTracker.ts`, inside a
   `function handleMouseMove(event) {...}` declared after an `if (!node)
-  return;` guard — TypeScript doesn't propagate narrowing of a `const`
-  into a hoisted function *declaration*'s body, only into function
-  *expressions* created after the guard. Fixed both by changing
+return;` guard — TypeScript doesn't propagate narrowing of a `const`
+  into a hoisted function _declaration_'s body, only into function
+  _expressions_ created after the guard. Fixed both by changing
   `function handleMouseMove(event) {}` to `const handleMouseMove = (event)
-  => {}`; re-ran typecheck clean. The other 3 packages typechecked clean
+=> {}`; re-ran typecheck clean. The other 3 packages typechecked clean
   with no changes needed.
 - Full-repo `pnpm lint` was clean (the one warning it surfaces is the same
   pre-existing, unrelated issue in `challenges/easy/flatten-array` noted in
@@ -350,8 +487,7 @@ this isn't arbitrary, but it's not a hard constraint either:
 
 - Built all 4 `state-management` packages in parallel via 4 subagents, each
   scoped to its own package directory (`lifting-state-up` port 5321,
-  `context-basics` 5322, `use-reducer-basics` 5323, `external-store-sync`
-  5324) — `state-management` is now ✅ complete. Each subagent verified its
+  `context-basics` 5322, `use-reducer-basics` 5323, `external-store-sync` 5324) — `state-management` is now ✅ complete. Each subagent verified its
   theory content against context7 (`/reactjs/react.dev`) before writing:
   `lifting-state-up` against "Sharing State Between Components"/"Managing
   State"; `context-basics` against `createContext`/`useContext`/`memo`

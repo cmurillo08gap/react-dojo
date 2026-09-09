@@ -58,35 +58,39 @@ implementation of this layout (see its `src/App.tsx` and `src/index.css`)
 
 ## Status
 
-| Concept                                                                          | Category     | Status        |
-| -------------------------------------------------------------------------------- | ------------ | ------------- |
-| [`hooks/use-state-basics`](hooks/use-state-basics)                               | hooks        | ✅ scaffolded |
-| [`hooks/use-effect-basics`](hooks/use-effect-basics)                             | hooks        | ✅ scaffolded |
-| [`hooks/use-ref-basics`](hooks/use-ref-basics)                                   | hooks        | ✅ scaffolded |
-| [`hooks/use-memo-basics`](hooks/use-memo-basics)                                 | hooks        | ✅ scaffolded |
-| [`hooks/use-callback-basics`](hooks/use-callback-basics)                         | hooks        | ✅ scaffolded |
-| [`hooks/custom-hooks-basics`](hooks/custom-hooks-basics)                         | hooks        | ✅ scaffolded |
-| [`fundamentals/jsx-and-components`](fundamentals/jsx-and-components)             | fundamentals | ✅ scaffolded |
-| [`fundamentals/props-basics`](fundamentals/props-basics)                         | fundamentals | ✅ scaffolded |
-| [`fundamentals/rendering-lists-and-keys`](fundamentals/rendering-lists-and-keys) | fundamentals | ✅ scaffolded |
-| [`fundamentals/conditional-rendering`](fundamentals/conditional-rendering)       | fundamentals | ✅ scaffolded |
-| [`state-management/lifting-state-up`](state-management/lifting-state-up)         | state-management | ✅ scaffolded |
-| [`state-management/context-basics`](state-management/context-basics)             | state-management | ✅ scaffolded |
-| [`state-management/use-reducer-basics`](state-management/use-reducer-basics)     | state-management | ✅ scaffolded |
-| [`state-management/external-store-sync`](state-management/external-store-sync) | state-management | ✅ scaffolded |
-| [`forms-and-actions/controlled-vs-uncontrolled-inputs`](forms-and-actions/controlled-vs-uncontrolled-inputs) | forms-and-actions | ✅ scaffolded |
-| [`forms-and-actions/form-actions-basics`](forms-and-actions/form-actions-basics) | forms-and-actions | ✅ scaffolded |
-| [`forms-and-actions/use-action-state-basics`](forms-and-actions/use-action-state-basics) | forms-and-actions | ✅ scaffolded |
-| [`forms-and-actions/use-form-status-basics`](forms-and-actions/use-form-status-basics) | forms-and-actions | ✅ scaffolded |
-| [`forms-and-actions/use-optimistic-basics`](forms-and-actions/use-optimistic-basics) | forms-and-actions | ✅ scaffolded |
-| [`concurrent-features/suspense-basics`](concurrent-features/suspense-basics) | concurrent-features | ✅ scaffolded |
-| [`concurrent-features/use-transition-basics`](concurrent-features/use-transition-basics) | concurrent-features | ✅ scaffolded |
-| [`concurrent-features/use-deferred-value-basics`](concurrent-features/use-deferred-value-basics) | concurrent-features | ✅ scaffolded |
-| [`concurrent-features/use-api-basics`](concurrent-features/use-api-basics) | concurrent-features | ✅ scaffolded |
-| [`patterns/compound-components`](patterns/compound-components) | patterns | ✅ scaffolded |
-| [`patterns/render-props`](patterns/render-props) | patterns | ✅ scaffolded |
-| [`patterns/controlled-vs-uncontrolled-components`](patterns/controlled-vs-uncontrolled-components) | patterns | ✅ scaffolded |
-| [`patterns/higher-order-components`](patterns/higher-order-components) | patterns | ✅ scaffolded |
+| Concept                                                                                                      | Category            | Status        |
+| ------------------------------------------------------------------------------------------------------------ | ------------------- | ------------- |
+| [`hooks/use-state-basics`](hooks/use-state-basics)                                                           | hooks               | ✅ scaffolded |
+| [`hooks/use-effect-basics`](hooks/use-effect-basics)                                                         | hooks               | ✅ scaffolded |
+| [`hooks/use-ref-basics`](hooks/use-ref-basics)                                                               | hooks               | ✅ scaffolded |
+| [`hooks/use-memo-basics`](hooks/use-memo-basics)                                                             | hooks               | ✅ scaffolded |
+| [`hooks/use-callback-basics`](hooks/use-callback-basics)                                                     | hooks               | ✅ scaffolded |
+| [`hooks/custom-hooks-basics`](hooks/custom-hooks-basics)                                                     | hooks               | ✅ scaffolded |
+| [`fundamentals/jsx-and-components`](fundamentals/jsx-and-components)                                         | fundamentals        | ✅ scaffolded |
+| [`fundamentals/props-basics`](fundamentals/props-basics)                                                     | fundamentals        | ✅ scaffolded |
+| [`fundamentals/rendering-lists-and-keys`](fundamentals/rendering-lists-and-keys)                             | fundamentals        | ✅ scaffolded |
+| [`fundamentals/conditional-rendering`](fundamentals/conditional-rendering)                                   | fundamentals        | ✅ scaffolded |
+| [`state-management/lifting-state-up`](state-management/lifting-state-up)                                     | state-management    | ✅ scaffolded |
+| [`state-management/context-basics`](state-management/context-basics)                                         | state-management    | ✅ scaffolded |
+| [`state-management/use-reducer-basics`](state-management/use-reducer-basics)                                 | state-management    | ✅ scaffolded |
+| [`state-management/external-store-sync`](state-management/external-store-sync)                               | state-management    | ✅ scaffolded |
+| [`forms-and-actions/controlled-vs-uncontrolled-inputs`](forms-and-actions/controlled-vs-uncontrolled-inputs) | forms-and-actions   | ✅ scaffolded |
+| [`forms-and-actions/form-actions-basics`](forms-and-actions/form-actions-basics)                             | forms-and-actions   | ✅ scaffolded |
+| [`forms-and-actions/use-action-state-basics`](forms-and-actions/use-action-state-basics)                     | forms-and-actions   | ✅ scaffolded |
+| [`forms-and-actions/use-form-status-basics`](forms-and-actions/use-form-status-basics)                       | forms-and-actions   | ✅ scaffolded |
+| [`forms-and-actions/use-optimistic-basics`](forms-and-actions/use-optimistic-basics)                         | forms-and-actions   | ✅ scaffolded |
+| [`concurrent-features/suspense-basics`](concurrent-features/suspense-basics)                                 | concurrent-features | ✅ scaffolded |
+| [`concurrent-features/use-transition-basics`](concurrent-features/use-transition-basics)                     | concurrent-features | ✅ scaffolded |
+| [`concurrent-features/use-deferred-value-basics`](concurrent-features/use-deferred-value-basics)             | concurrent-features | ✅ scaffolded |
+| [`concurrent-features/use-api-basics`](concurrent-features/use-api-basics)                                   | concurrent-features | ✅ scaffolded |
+| [`patterns/compound-components`](patterns/compound-components)                                               | patterns            | ✅ scaffolded |
+| [`patterns/render-props`](patterns/render-props)                                                             | patterns            | ✅ scaffolded |
+| [`patterns/controlled-vs-uncontrolled-components`](patterns/controlled-vs-uncontrolled-components)           | patterns            | ✅ scaffolded |
+| [`patterns/higher-order-components`](patterns/higher-order-components)                                       | patterns            | ✅ scaffolded |
+| [`testing/rtl-basics`](testing/rtl-basics)                                                                   | testing             | ✅ scaffolded |
+| [`testing/testing-async-ui`](testing/testing-async-ui)                                                       | testing             | ✅ scaffolded |
+| [`testing/mocking-basics`](testing/mocking-basics)                                                           | testing             | ✅ scaffolded |
+| [`testing/accessible-queries`](testing/accessible-queries)                                                   | testing             | ✅ scaffolded |
 
 _Add a row here as you add each new concept package._
 

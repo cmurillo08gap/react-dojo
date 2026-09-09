@@ -233,4 +233,32 @@ export const CONCEPTS: ConceptManifestEntry[] = [
     packageName: "concept-higher-order-components",
     port: 5364,
   },
+  {
+    category: "testing",
+    slug: "rtl-basics",
+    title: "RTL basics",
+    packageName: "concept-rtl-basics",
+    port: 5371,
+  },
+  {
+    category: "testing",
+    slug: "testing-async-ui",
+    title: "Testing async UI",
+    packageName: "concept-testing-async-ui",
+    port: 5372,
+  },
+  {
+    category: "testing",
+    slug: "mocking-basics",
+    title: "Mocking basics",
+    packageName: "concept-mocking-basics",
+    port: 5373,
+  },
+  {
+    category: "testing",
+    slug: "accessible-queries",
+    title: "Accessible queries",
+    packageName: "concept-accessible-queries",
+    port: 5374,
+  },
 ];
