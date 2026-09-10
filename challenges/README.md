@@ -26,6 +26,16 @@ pnpm --filter challenge-<slug> test:watch
 Edit `src/solution.ts` until the tests in `src/__tests__/` pass, then check
 the collapsed reference solution in the challenge's `README.md`.
 
+## React component-building challenges
+
+The packages under this folder are algorithmic/TDD-style (a failing test
+suite you implement against). For the other common interview format —
+"build this component from scratch" (counter, stopwatch, autocomplete,
+tabs, infinite scroll, …) — see
+[`../challenges-gallery/`](../challenges-gallery), a single browsable page
+of those, each with a plain-English explanation and a reference test file
+you implement against by hand in [`../playground/`](../playground).
+
 ## Difficulty tiers
 
 | Tier     | Focus                                                                                                                                                      |

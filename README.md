@@ -12,6 +12,7 @@ react-dojo/
 │   └── <category>/<slug>/
 ├── challenges/        # TDD-style coding exercises (algorithmic + React-flavored)
 │   └── <easy|medium|hard>/<slug>/
+├── challenges-gallery/    # browsable list of React component-building interview challenges
 ├── interviews/         # question bank + generated mock-interview transcripts
 │   ├── question-bank/
 │   └── sessions/
@@ -26,6 +27,7 @@ react-dojo/
 See each folder's own `README.md` for the details and the "how to add a
 new one" steps: [`concepts/README.md`](concepts/README.md) ·
 [`challenges/README.md`](challenges/README.md) ·
+[`challenges-gallery/README.md`](challenges-gallery/README.md) ·
 [`interviews/README.md`](interviews/README.md).
 
 ## Getting started
